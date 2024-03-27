@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seu Título</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap-datepicker CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="text-center">
+        <h2>Buscar Chamado</h2>
+        <br>
+        <br>
+        <form>
+            <div class="form-group row">
+                <label for="filtro" class="col-sm-2 col-form-label">Filtro:</label>
+                <div class="col-sm-3">
+                    <select class="form-control" id="filtro">
+                        <option value="opcao1">Nr.Chamado</option>
+                        <option value="opcao2">Data</option>
+                        <option value="opcao3">SLA</option>
+                        <option value="opcao3">Solicitante</option>
+                        <option value="opcao3">Atendente</option>
+                        <option value="opcao3">E-mail</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="texto-exemplo" placeholder="Nr.Chamado, Solicitante, SLA, etc.">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="de" class="col-sm-2 col-form-label">De:</label>
+                <div class="col-sm-3">
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="de">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <label for="ate" class="col-sm-1 col-form-label">Para:</label>
+                <div class="col-sm-3">
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="ate">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="container mt-5">
+            <div class="text-center">
+                <h2>Chamados</h2>
+            </div>
+            <table class="table mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">NR.CHAMADO</th>
+                        <th scope="col">DATA DE ABERTURA</th>
+                        <th scope="col">CRIADO POR</th>
+                        <th scope="col">STATUS</th>
+                        <th scope="col">SLA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 1; i <= 10; i++) {
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- jQuery (necessário para o Bootstrap-datepicker) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap-datepicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <!-- Seu script de inicialização do datepicker -->
+    <script>
+        $(document).ready(function () {
+            $('.input-group.date').datepicker({
+                format: 'dd/mm/yyyy',
+                autoclose: true
+            });
+        });
+    </script>
+</body>
+</html>
