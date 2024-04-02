@@ -3,7 +3,7 @@ using ITicket.Models;
 
 namespace ITicket.Controllers {
     public class AccountController : Controller {
-        public IActionResult Login(LoginViewModel model) {
+        public IActionResult Login(Autenticacao model) {
             if (model.Username == "admin" && model.Password == "admin") {
                 // Usuário autenticado com sucesso
                 // Pode ser feita uma lógica para armazenar o estado de autenticação, como em um cookie ou na sessão

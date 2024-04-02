@@ -1,4 +1,9 @@
 {
-  "dependencies": {},
+  "dependencies": {
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2024-03-29T02:48:47.0437035Z"
+    }
+  },
   "parameters": {}
 }

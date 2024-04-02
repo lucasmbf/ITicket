@@ -1,19 +1,24 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Hosting;
+using ITicket.Models;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+
+// Adicione outros serviços ao contêiner
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<Contexto>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("ConexaoSQLite")));
+ //configuracao do contexto do banco de dados SQLite - ConexaoSQLite é o nome da conexao que foi nomeado no arquivo appsettings.json
 
 var app = builder.Build();
 
-
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment()) {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
