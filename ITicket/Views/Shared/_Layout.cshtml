@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ITicket</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,7 +20,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a asp-controller="Home" asp-action="AbrirChamado" class="btn btn-primary">Abrir Chamado</a>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#abrirChamadoModal">Abrir Chamado</button>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Administracao">Administração</a>
@@ -47,9 +47,70 @@
             &copy; 2024 - ITicket - <a asp-area="" asp-controller="Home" asp-action="Administracao">Administracao</a>
         </div>
     </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="abrirChamadoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Abrir Chamado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="data" class="form-label">Data:</label>
+                            <input type="text" class="form-control" id="data" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="solicitante" class="form-label">Solicitante:</label>
+                            <input type="text" class="form-control" id="solicitante">
+                        </div>
+                        <div class="mb-3">
+                            <label for="departamento" class="form-label">Departamento:</label>
+                            <input type="text" class="form-control" id="departamento">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cargo" class="form-label">Cargo:</label>
+                            <input type="text" class="form-control" id="cargo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipoServico" class="form-label">Tipo de Serviço:</label>
+                            <select class="form-select" id="tipoServico"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="afetaMaisUsuarios" class="form-label">Afeta mais de um usuário:</label>
+                            <select class="form-select" id="afetaMaisUsuarios">
+                                <option value="sim">Sim</option>
+                                <option value="nao">Não</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descricaoProblema" class="form-label">Descrição do Problema:</label>
+                            <textarea class="form-control" id="descricaoProblema" rows="3" maxlength="500"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="arquivo" class="form-label">Upload de Arquivo:</label>
+                            <input type="file" class="form-control" id="arquivo">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            var dataAtual = new Date().toLocaleDateString();
+            $("#data").val(dataAtual);
+        });
+    </script>
 </body>
 </html>
