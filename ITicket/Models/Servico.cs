@@ -3,5 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ITicket.Models {
     public class Servico {
+
     }
 }
