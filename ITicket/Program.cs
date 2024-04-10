@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Adicione outros serviços ao contêiner
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<Contexto>(options =>
+builder.Services.AddDbContext<ContextoDb>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("ConexaoSQLite")));
  //configuracao do contexto do banco de dados SQLite - ConexaoSQLite é o nome da conexao que foi nomeado no arquivo appsettings.json
 

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ITicket.Migrations
 {
-    [DbContext(typeof(Contexto))]
+    [DbContext(typeof(ContextoDb))]
     [Migration("20240402123641_criacaoBDSQlite")]
     partial class criacaoBDSQlite
     {

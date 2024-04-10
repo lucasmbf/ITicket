@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ITicket.Migrations
 {
-    [DbContext(typeof(Contexto))]
+    [DbContext(typeof(ContextoDb))]
     partial class ContextoModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

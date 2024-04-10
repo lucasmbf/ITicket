@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 namespace ITicket.Controllers {
     public class ITicketController : Controller {
 
-        private readonly Contexto _contexto;
+        private readonly ContextoDb _contexto;
 
-        public ITicketController(Contexto contexto)
+        public ITicketController(ContextoDb contexto)
         {
             _contexto = contexto;
         }
