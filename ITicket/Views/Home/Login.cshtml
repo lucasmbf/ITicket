@@ -1,8 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Login";
 }
-<h2 class="text-center mb-4">Login</h2>
-<div class="d-flex justify-content-center align-items-center vh-100">
+
+<div class="d-flex justify-content-center align-items-center vh-100 flex-column">
+    <h2 class="text-center mb-4">Login</h2>
     <form asp-controller="Account" asp-action="Login" method="post" class="w-50">
         <div class="form-group">
             <label for="Username">Usuario:</label>

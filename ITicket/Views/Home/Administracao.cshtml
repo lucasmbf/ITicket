@@ -3,4 +3,144 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Administrar usuários</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="Nome">Nome:</label>
+            <input type="text" class="form-control mb-3" id="Nome" name="Nome">
+
+            <label for="Email">Email:</label>
+            <input type="email" class="form-control mb-3" id="Email" name="Email">
+        </div>
+        <div class="col-md-6">
+            <label for="Departamento">Departamento:</label>
+            <input type="text" class="form-control mb-3" id="Departamento" name="Departamento">
+
+            <label for="Cargo">Cargo:</label>
+            <input type="text" class="form-control mb-3" id="Cargo" name="Cargo">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label for="Telefone">Telefone:</label>
+            <input type="text" class="form-control mb-3" id="Telefone" name="Telefone">
+        </div>
+        <div class="col-md-4">
+            <label for="Ramal">Ramal:</label>
+            <input type="text" class="form-control mb-3" id="Ramal" name="Ramal">
+        </div>
+        <div class="col-md-4">
+            <label for="Gestor">Gestor:</label>
+            <input type="text" class="form-control mb-3" id="Gestor" name="Gestor">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label for="Usuario">Usuário:</label>
+            <input type="text" class="form-control mb-3" id="Usuario" name="Usuario">
+            <label for="Senha">Senha:</label>
+            <input type="password" class="form-control mb-3" id="Senha" name="Senha">
+        </div>
+        <div class="col-md-6">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Solicitante" id="Solicitante">
+                <label class="form-check-label" for="Solicitante">
+                    Solicitante
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Atendente" id="Atendente">
+                <label class="form-check-label" for="Atendente">
+                    Atendente
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Adm" id="Adm">
+                <label class="form-check-label" for="Adm">
+                    Adm
+                </label>
+            </div>
+        </div>
+    </div>   
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+    </div>
+</div>
+<br></br>
+<hr>
+<br></br>
+
+<div class="container mt-6">
+    <div class="row">
+        <div class="col-md-3">
+            <label for="Id">ID:</label>
+            <input type="text" class="form-control" id="Id" name="Id">
+        </div>
+        <div class="col-md-3">
+            <label for="NomeBuscar">Nome:</label>
+            <input type="text" class="form-control" id="NomeBuscar" name="NomeBuscar">
+        </div>
+        <div class="col-md-3">
+            <label for="EmailBuscar">Email:</label>
+            <input type="email" class="form-control" id="EmailBuscar" name="EmailBuscar">
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary mt-4">Buscar</button>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Username</th>
+                        <th>Senha</th>
+                        <th>E-mail</th>
+                        <th>Solicitante</th>
+                        <th>Atendente</th>
+                        <th>Adm</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Criar a task para popular os campos da tebal -->
+                    <!-- Cada linha deve ter um botão "Editar" -->
+                    <tr>
+                        <td>Nome1</td>
+                        <td>Username1</td>
+                        <td>********</td>
+                        <td>email1@example.com</td>
+                        <td><input type="checkbox" disabled checked></td>
+                        <td><input type="checkbox" disabled checked></td>
+                        <td><input type="checkbox" disabled checked></td>
+                        <td><button class="btn btn-primary">Editar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Nome2</td>
+                        <td>Username2</td>
+                        <td>********</td>
+                        <td>email2@example.com</td>
+                        <td><input type="checkbox" disabled></td>
+                        <td><input type="checkbox" disabled checked></td>
+                        <td><input type="checkbox" disabled></td>
+                        <td><button class="btn btn-primary">Editar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+</div>
+
