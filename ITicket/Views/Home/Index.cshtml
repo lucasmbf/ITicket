@@ -22,6 +22,37 @@
 
 </head>
 <body>
+
+
+    <!-- Formulario Modal de login -->    
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form asp-controller="Account" asp-action="ValidateLogin" method="post">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="user">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="senha">
+                            <a href="#" class="d-block mt-2 text-decoration-none">Esqueci minha senha</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary d-block mx-auto">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Formulario Modal de login -->
+
+
+
     <div class="text-center">
         <h2>Consultar Chamado</h2>
         <br>
@@ -39,7 +70,7 @@
                         <option value="opcao3">E-mail</option>
                     </select>
                     <br>
-                    
+
                 </div>
                 <div class="col-sm-4">
                     <div class="input-group">
@@ -130,6 +161,36 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            $('#loginModal').modal('show');
+
+            $('#loginForm').submit(function (event) {
+                event.preventDefault(); // Impede o envio do formulário
+
+                var username = $('#username').val();
+                var senha = $('#password').val();
+
+                $.ajax({
+                    url: '/Account/ValidateLogin',
+                    type: 'POST',
+                    data: { user: username, senha: senha },
+                    success: function (data) {
+                        // Redireciona o usuário para a página inicial se o login for bem-sucedido
+                        window.location.href = data.redirectUrl;
+                    },
+                    error: function (xhr, status, error) {
+                        // Exibe a mensagem de erro se o login falhar
+                        $('#loginModal').modal('hide');
+                        alert("Credenciais inválidas. Tente novamente.");
+                    }
+                });
+            });
+        });
+
+    </script>
+
+
 
 </body>
 </html>

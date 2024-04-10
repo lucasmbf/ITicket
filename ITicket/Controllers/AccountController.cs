@@ -4,20 +4,41 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace ITicket.Controllers {
-    public class AccountController(ContextoDb context) : Controller {
-        private readonly ContextoDb _contexto = context;
+    public class AccountController : Controller {
+        private readonly ContextoDb _contexto;
 
-        public IActionResult Login(Usuario model) {
-            var user = _contexto.Usuario.FirstOrDefault(u => u.Username == model.Username && u.Senha == model.Senha);
+        public AccountController(ContextoDb contexto) {
+            _contexto = contexto;
+        }
+
+        public IActionResult ValidateLogin(Usuario usuario) {
+            var user = _contexto.Usuario.FirstOrDefault(u => u.Username == usuario.Username && u.Senha == usuario.Senha);
 
             if (user != null) {
-                // Usuário autenticado com sucesso
-                // Pode ser feita uma lógica para armazenar o estado de autenticação, como em um cookie ou na sessão
                 return RedirectToAction("Index", "Home");
             }
-            // Login inválido, redireciona de volta para a página de login
-            return RedirectToAction("Login", "Account");
+
+            ViewData["MensagemErro"] = "Credenciais inválidas. Tente novamente.";
+            return View("~/Views/Home/Index.cshtml");
         }
+
+
+
+
+        //Metodo para testar a conexao com o banco de dados pela url https://localhost:7243/account/testeconexao 
+        public IActionResult TesteConexao() {
+            var usuario = _contexto.Usuario.FirstOrDefault(u => u.IdUsuario == 1);
+
+            if (usuario != null) {
+                return Content($"ID: {usuario.IdUsuario}, Nome: {usuario.Nome}, Email: {usuario.Email}");
+            }
+
+            return Content("Usuário não encontrado.");
+        }
+
+
 
     }
 }
+
+
