@@ -7,12 +7,24 @@
       "RelativeMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|solutionrelative:iticket\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|c:\\users\\lucas bianco\\desktop\\ads\\5 semestre\\lab. eng. software\\iticket\\iticket\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|solutionrelative:iticket\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|c:\\users\\lucas bianco\\desktop\\ads\\5 semestre\\lab. eng. software\\iticket\\iticket\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|solutionrelative:iticket\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|c:\\users\\lucas bianco\\desktop\\ads\\5 semestre\\lab. eng. software\\iticket\\iticket\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|solutionrelative:iticket\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|c:\\users\\lucas bianco\\desktop\\ads\\5 semestre\\lab. eng. software\\iticket\\iticket\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|solutionrelative:iticket\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|c:\\users\\lucas bianco\\desktop\\ads\\5 semestre\\lab. eng. software\\iticket\\iticket\\views\\home\\minhaconta.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|solutionrelative:iticket\\views\\home\\minhaconta.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|c:\\users\\lucas bianco\\desktop\\ads\\5 semestre\\lab. eng. software\\iticket\\iticket\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|solutionrelative:iticket\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|c:\\users\\lucas bianco\\desktop\\ads\\5 semestre\\lab. eng. software\\iticket\\iticket\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|c:\\users\\lucas bianco\\desktop\\ads\\5 semestre\\lab. eng. software\\iticket\\iticket\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|solutionrelative:iticket\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|c:\\users\\lucas bianco\\desktop\\ads\\5 semestre\\lab. eng. software\\iticket\\iticket\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|solutionrelative:iticket\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7873857A-3757-47BB-9BC5-887DFB1CB502}|ITicket\\ITicket.csproj|c:\\users\\lucas bianco\\desktop\\ads\\5 semestre\\lab. eng. software\\iticket\\iticket\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,13 +66,37 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "ITicket\\wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "ITicket\\wwwroot\\js\\site.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-10T20:55:56.969Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MinhaConta.cshtml",
+              "DocumentMoniker": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\Views\\Home\\MinhaConta.cshtml",
+              "RelativeDocumentMoniker": "ITicket\\Views\\Home\\MinhaConta.cshtml",
+              "ToolTip": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\Views\\Home\\MinhaConta.cshtml",
+              "RelativeToolTip": "ITicket\\Views\\Home\\MinhaConta.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-10T19:05:03.22Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "ITicket\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "ITicket\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAACAAAAAdAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-10T17:51:44.904Z",
               "EditorCaption": ""
@@ -77,14 +109,14 @@
               "RelativeDocumentMoniker": "ITicket\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "ITicket\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAADMAAAAmAAAA",
+              "ViewState": "AQIAAKsAAAAAAAAAAADwv8QAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-10T17:43:53.215Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\Program.cs",
               "RelativeDocumentMoniker": "ITicket\\Program.cs",
@@ -92,12 +124,11 @@
               "RelativeToolTip": "ITicket\\Program.cs",
               "ViewState": "AQIAABIAAAAAAAAAAAAowCUAAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-10T17:27:57.364Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-10T17:27:57.364Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\appsettings.json",
               "RelativeDocumentMoniker": "ITicket\\appsettings.json",
@@ -105,12 +136,11 @@
               "RelativeToolTip": "ITicket\\appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-10T17:25:31.682Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-10T17:25:31.682Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\Views\\Home\\Login.cshtml",
               "RelativeDocumentMoniker": "ITicket\\Views\\Home\\Login.cshtml",
@@ -123,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Usuario.cs",
               "DocumentMoniker": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\Models\\Usuario.cs",
               "RelativeDocumentMoniker": "ITicket\\Models\\Usuario.cs",
@@ -141,7 +171,7 @@
               "RelativeDocumentMoniker": "ITicket\\Controllers\\AccountController.cs",
               "ToolTip": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\Controllers\\AccountController.cs",
               "RelativeToolTip": "ITicket\\Controllers\\AccountController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAqwA4AAAAhAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-10T17:00:28.044Z",
               "EditorCaption": ""

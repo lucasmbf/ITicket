@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rCKWjlng/oKTSWsUuPO4LMu6bu8tVzgG9LaliqRoLL4=",
+  "Hash": "ESvDjocw9qMJALSua6N0JsWRvzSZ0mSTi5TmRJcvgHE=",
   "Source": "ITicket",
   "BasePath": "_content/ITicket",
   "Mode": "Default",
@@ -1231,6 +1231,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\wwwroot\\images\\myaccount.png",
+      "SourceId": "ITicket",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\wwwroot\\",
+      "BasePath": "_content/ITicket",
+      "RelativePath": "images/myaccount.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\myaccount.png"
     },
     {
       "Identity": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\wwwroot\\js\\site.js",

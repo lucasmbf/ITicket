@@ -24,7 +24,7 @@
 <body>
 
 
-    <!-- Formulario Modal de login -->    
+    <!-- Formulario Modal de login -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -33,7 +33,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form asp-controller="Account" asp-action="ValidateLogin" method="post">
+                    <form id="loginForm" asp-controller="Account" asp-action="ValidateLogin" method="post">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" id="username" name="user">
@@ -161,36 +161,42 @@
             });
         });
     </script>
+
+    <!-- Script de inicialização do modal de login -->
     <script>
         $(document).ready(function () {
             $('#loginModal').modal('show');
+        });
+    </script>
 
+    <!-- Script de envio do formulário de login -->
+    <script>
+        $(document).ready(function () {
             $('#loginForm').submit(function (event) {
-                event.preventDefault(); // Impede o envio do formulário
-
-                var username = $('#username').val();
-                var senha = $('#password').val();
+                event.preventDefault(); // Impede o envio padrão do formulário
 
                 $.ajax({
-                    url: '/Account/ValidateLogin',
-                    type: 'POST',
-                    data: { user: username, senha: senha },
-                    success: function (data) {
-                        // Redireciona o usuário para a página inicial se o login for bem-sucedido
-                        window.location.href = data.redirectUrl;
+                    url: $(this).attr('action'), // Obtém o URL de destino do formulário
+                    method: $(this).attr('method'), // Obtém o método do formulário (POST neste caso)
+                    data: $(this).serialize(), // Obtém os dados do formulário
+                    success: function (response) {
+                        // Lida com a resposta do servidor
+                        if (response.ok) {
+                            $('#loginModal').modal('hide');
+                            window.location.href = '/Home/Index';
+                        } else {
+                            alert('Credenciais inválidas. Tente novamente.');
+                        }
                     },
-                    error: function (xhr, status, error) {
-                        // Exibe a mensagem de erro se o login falhar
-                        $('#loginModal').modal('hide');
-                        alert("Credenciais inválidas. Tente novamente.");
+                    error: function () {
+                        alert('Ocorreu um erro ao processar a solicitação. Tente novamente mais tarde.');
                     }
                 });
             });
         });
-
     </script>
 
-
+    
 
 </body>
 </html>

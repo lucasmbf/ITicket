@@ -26,11 +26,18 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Administracao">Administração</a>
                         </li>
                     </ul>
-                   <!--</> <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
-                        </li>
-                     </ul>-->
+                    <div class="dropdown">
+                        <button onclick="toggleDropdown()" class="dropbtn">
+                            <img src="~/images/myaccount.png" alt="Ícone da Minha Conta" style="width: 20px; height: 20px; margin-right: 5px;">
+
+                        </button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a href="#">Minha Conta</a>
+                            <a href="#">Logout</a>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </nav>
@@ -48,7 +55,7 @@
         </div>
     </footer>
 
-    <!-- Modal -->
+    <!-- Inicio do Modal de abertura de chamado -->
     <div class="modal fade" id="abrirChamadoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -102,6 +109,8 @@
             </div>
         </div>
     </div>
+    <!-- Fim do Modal de abertura de chamado -->
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -111,6 +120,24 @@
             var dataAtual = new Date().toLocaleDateString();
             $("#data").val(dataAtual);
         });
+    </script>
+
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("myDropdown");
+            dropdown.classList.toggle("show");
+        }
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
     </script>
 </body>
 </html>
