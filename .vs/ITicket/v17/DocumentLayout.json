@@ -98,8 +98,7 @@
               "RelativeToolTip": "ITicket\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-10T17:51:44.904Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-10T17:51:44.904Z"
             },
             {
               "$type": "Document",
@@ -109,7 +108,7 @@
               "RelativeDocumentMoniker": "ITicket\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "ITicket\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAKsAAAAAAAAAAADwv8QAAAANAAAA",
+              "ViewState": "AQIAAHgAAAAAAAAAAADwv70AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-10T17:43:53.215Z",
               "EditorCaption": ""
@@ -148,8 +147,7 @@
               "RelativeToolTip": "ITicket\\Views\\Home\\Login.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-10T17:03:28.287Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-10T17:03:28.287Z"
             },
             {
               "$type": "Document",
@@ -173,8 +171,7 @@
               "RelativeToolTip": "ITicket\\Controllers\\AccountController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-10T17:00:28.044Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-10T17:00:28.044Z"
             }
           ]
         }

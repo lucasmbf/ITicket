@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iDn45eHLLmobcg4urC025ZCk4AS/Yfbp+sTgqZLOqatOKBMXd7pZYfLBBBqyBFy3J2SEdlKCQycglowJxLFrBw==",
+  "dgSpecHash": "pDQxJwLv+tKppyQLMqU1uCVTwt3qAK9sikp3QoUlIsotI9XRGEv+Rj0oe4m0b7uK5DzQPNmsUjmogAb8QAO39g==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\ITicket.csproj",
+  "projectFilePath": "C:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\ITicket.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lucas Bianco\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Lucas Bianco\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
