@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ITicket.Models;
 using System.Configuration;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 
 
@@ -10,15 +11,30 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 
-// Adicione outros serviços ao contêiner
+// Adicione outros serviï¿½os ao contï¿½iner
+
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
 builder.Services.AddDbContext<ContextoDb>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("ConexaoSQLite")));
-//configuracao do contexto do banco de dados SQLite - ConexaoSQLite é o nome da conexao que foi nomeado no arquivo appsettings.json
+//configuracao do contexto do banco de dados SQLite - ConexaoSQLite ï¿½ o nome da conexao que foi nomeado no arquivo appsettings.json
 
 
+
+
+builder.Services.AddDistributedMemoryCache();
+
+//ServiÃ§os de sessao para manter o usuario conectado
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);//mantem o usuario conectado por 30 minutos afk
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
+
+
 
 if (!app.Environment.IsDevelopment()) {
     app.UseExceptionHandler("/Home/Error");
@@ -27,9 +43,8 @@ if (!app.Environment.IsDevelopment()) {
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -40,8 +55,6 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-
 
 
 app.Run();

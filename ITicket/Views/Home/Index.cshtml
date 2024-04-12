@@ -9,47 +9,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Seu Título</title>
 
-    <!-- CSS do Bootstrap (via CDN) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS do Bootstrap 4 (via CDN) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Biblioteca de ícones do Bootstrap (via CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- JavaScript do Bootstrap (via CDN, necessário para alguns recursos do Bootstrap) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins and Bootstrap-datepicker) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 
+    <!-- JavaScript do Bootstrap 4 (via CDN, necessário para alguns recursos do Bootstrap) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- CSS for flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- JavaScript for flatpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
 </head>
 <body>
 
 
-    <!-- Formulario Modal de login -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="loginForm" asp-controller="Account" asp-action="ValidateLogin" method="post">
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="user">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="senha">
-                            <a href="#" class="d-block mt-2 text-decoration-none">Esqueci minha senha</a>
-                        </div>
-                        <button type="submit" class="btn btn-primary d-block mx-auto">Login</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Formulario Modal de login -->
+    
+<script>
+    $(document).ready(function() {
+        if (sessionStorage.getItem("isAuthenticated") !== "true") {
+            $('#loginModal').modal('show');
+        }
+    });
+</script>
 
 
 
@@ -72,35 +62,30 @@
                     <br>
 
                 </div>
-                <div class="col-sm-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="texto-exemplo" placeholder="Nr.Chamado, Solicitante, SLA, etc.">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="de" class="col-sm-2 col-form-label">De:</label>
-                <div class="col-sm-3">
-                    <div class="input-group date">
-                        <input type="text" class="form-control" id="de">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary px-2" type="button" id="deBtn"><i class="bi bi-calendar3"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <label for="ate" class="col-sm-1 col-form-label">Até:</label>
-                <div class="col-sm-3">
-                    <div class="input-group date">
-                        <input type="text" class="form-control" id="ate">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary px-2" type="button" id="ateBtn"><i class="bi bi-calendar3"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
-            </div>
+                    <div class="col-sm-4">
+    <div class="input-group">
+        <input type="text" class="form-control" id="texto-exemplo" placeholder="Nr.Chamado, Solicitante, SLA, etc.">
+    </div>
+</div>
+<div class="form-group row">
+    <label for="de" class="col-sm-2 col-form-label">De:</label>
+    <div class="col-sm-3">
+        <div class="input-group date">
+            <input type="text" class="form-control" id="de">
+            <button class="btn btn-outline-secondary" type="button" id="deBtn"><i class="bi bi-calendar3"></i></button>
+        </div>
+    </div>
+    <label for="ate" class="col-sm-1 col-form-label">Até:</label>
+    <div class="col-sm-3">
+        <div class="input-group date">
+            <input type="text" class="form-control" id="ate">
+            <button class="btn btn-outline-secondary" type="button" id="ateBtn"><i class="bi bi-calendar3"></i></button>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+</div>
         </form>
 
         <div class="container mt-5">
@@ -142,32 +127,30 @@
 
 
 
-    <!-- jQuery (necessário para o Bootstrap-datepicker) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
 
-    <!-- Bootstrap-datepicker JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    
 
     <!-- Seu script de inicialização do datepicker -->
     <script>
-        $(document).ready(function () {
-            $('#deBtn, #ateBtn').click(function () {
-                $(this).closest('.input-group').find('input').datepicker('show');
-            });
+        var dePicker = flatpickr("#de", {
+        dateFormat: "d/m/Y"
+    });
 
-            $('#de, #ate').datepicker({
-                format: 'dd/mm/yyyy',
-                autoclose: true
-            });
-        });
+    var atePicker = flatpickr("#ate", {
+        dateFormat: "d/m/Y"
+    });
+
+    document.getElementById("deBtn").addEventListener("click", function() {
+        dePicker.open();
+    });
+
+    document.getElementById("ateBtn").addEventListener("click", function() {
+        atePicker.open();
+    });
     </script>
 
-    <!-- Script de inicialização do modal de login -->
-    <script>
-        $(document).ready(function () {
-            $('#loginModal').modal('show');
-        });
-    </script>
+    
 
     <!-- Script de envio do formulário de login -->
     <script>
@@ -180,8 +163,10 @@
                     method: $(this).attr('method'), // Obtém o método do formulário (POST neste caso)
                     data: $(this).serialize(), // Obtém os dados do formulário
                     success: function (response) {
+                        console.log(response);
                         // Lida com a resposta do servidor
                         if (response.ok) {
+                            localStorage.setItem("isAuthenticated", "true");
                             $('#loginModal').modal('hide');
                             window.location.href = '/Home/Index';
                         } else {
@@ -195,6 +180,8 @@
             });
         });
     </script>
+
+    
 
     
 
