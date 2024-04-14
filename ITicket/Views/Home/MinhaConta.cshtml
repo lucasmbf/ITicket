@@ -1,5 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Área do Usuário";
 }
+<h1>@ViewData["Title"]</h1>
+
+@model Usuario
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="Nome">Nome:</label>
+            <input type="text" class="form-control mb-3" id="Nome" name="Nome" value="@Model.Nome">
+
+            <label for="Email">Email:</label>
+            <input type="email" class="form-control mb-3" id="Email" name="Email" value="@Model.Email">
+        </div>
+        <div class="col-md-6">
+            <label for="Departamento">Departamento:</label>
+            <input type="text" class="form-control mb-3" id="Departamento" name="Departamento" value="@Model.Departamento">
+
+            <label for="Cargo">Cargo:</label>
+            <input type="text" class="form-control mb-3" id="Cargo" name="Cargo" value="@Model.Cargo">
+        </div>
+    </div>
+</div>
