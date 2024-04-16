@@ -16,6 +16,12 @@ namespace ITicket.Controllers {
             _signInManager = signInManager;
         }
 
+        /*[HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }*/
+
         [HttpPost]
         public IActionResult ValidateLogin(string Username, string Senha) {
             var usuario = _contexto.Usuario.FirstOrDefault(u => u.Username == Username && u.Senha == Senha);

@@ -9,17 +9,66 @@
     <div class="row">
         <div class="col-md-6">
             <label for="Nome">Nome:</label>
-            <input type="text" class="form-control mb-3" id="Nome" name="Nome" value="@Model.Nome">
+            <input type="text" class="form-control mb-3" id="Nome" name="Nome" value="@Model.Nome" readonly>
+            <br
+            <label for ="Telefone:">Telefone</label>
+            <input type="text" class="form-control mb-3" id="Telefone" name="Telefone" value="@Model.Telefone" readonly>
+            <br>
+            <label for="Gestor">Gestor:</label>
+            <input type="text" class="form-control mb-3" id="Gestor" name="Gestor" value="@Model.Gestor" readonly>
+            <br>
+            <label for ="Ramal:">Ramal</label>
+            <input type="text" class="form-control mb-3" id="Ramal" name="Ramal" value="@Model.Ramal" readonly>
 
-            <label for="Email">Email:</label>
-            <input type="email" class="form-control mb-3" id="Email" name="Email" value="@Model.Email">
         </div>
         <div class="col-md-6">
-            <label for="Departamento">Departamento:</label>
-            <input type="text" class="form-control mb-3" id="Departamento" name="Departamento" value="@Model.Departamento">
 
+            <label for="Email">Email:</label>
+            <input type="email" class="form-control mb-3" id="Email" name="Email" value="@Model.Email" readonly>
+            <br>
+            <label for="Departamento">Departamento:</label>
+            <input type="text" class="form-control mb-3" id="Departamento" name="Departamento" value="@Model.Departamento" readonly>
+            <br>
             <label for="Cargo">Cargo:</label>
-            <input type="text" class="form-control mb-3" id="Cargo" name="Cargo" value="@Model.Cargo">
+            <input type="text" class="form-control mb-3" id="Cargo" name="Cargo" value="@Model.Cargo" readonly>
+            <br>
+            <label for ="Ramal:">Ramal</label>
+            <input type="text" class="form-control mb-3" id="Ramal" name="Ramal" value="@Model.Ramal" readonly>        
+         </div>
+    </div>
+</div>
+<br>
+<br>
+<!--<a href="">Solicitar Alteração de Dados</a>-->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div style="text-align: center;">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestModal">Solicitar Alteração de Dados</button>
+            </div>
+
+            <div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="requestModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="requestModalLabel">Solicitar Alteração de Dados</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="mailto:lucasmbfonseca@gmail.com,misavenanciopio@gmail.com" method="post" enctype="text/plain">
+                                <label for="request">Request:</label>
+                                <textarea id="request" name="request" rows="4" cols="50" maxlength="300"></textarea>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
