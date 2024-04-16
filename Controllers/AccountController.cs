@@ -33,10 +33,30 @@ namespace ITicket.Controllers {
                 _logger.LogInformation("Session started for user {Username}", usuario.Username);
                 return RedirectToAction("Index", "Home");
             } else{
-                ModelState.AddModelError(string.Empty, "Tentativa de login inválida");
-                return RedirectToAction("Login");
+                ModelState.AddModelError(string.Empty, "Usuário ou senha incorreta, tente novamente.");
+                return View("Login");
             }
         }
+
+        [HttpGet]
+        public IActionResult GetUserName() {
+            var username = HttpContext.Session.GetString("Username");
+            Console.WriteLine("Username: " + username); // Log the username
+            if(username != null) {
+                var user = _contexto.Usuario.FirstOrDefault(u => u.Username == username);
+                Console.WriteLine("User: " + user); // Log the user
+                if(user != null) {
+                    var userInfo = new {
+                        Nome = user.Nome,
+                        Departamento = user.Departamento,
+                        Cargo = user.Cargo
+                    };
+                    return Json(userInfo);
+                }
+            }
+            return Json(new { Nome = "", Departamento = "", Cargo = "" });
+        }
+
 
         [HttpGet]
         public IActionResult IsSignedIn()

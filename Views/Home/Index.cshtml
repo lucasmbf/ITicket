@@ -49,21 +49,41 @@
                     </div>
                 </li>
             </ul>
-            <!-- Inicio do Modal de abertura de chamado -->
 
-<!--Popula o campo data com a data do sistema operacional -->
+
+
+<!-- Inicio do Modal de abertura de chamado -->
+
+<!-- Popula o campo Solicitante -->
+
+
+<!--Popula os campos necessarios com os dados da tabela Usuario, Servico e Chamado -->
 <script>
-    $(document).ready(function() {
-        $('#abrirChamadoModal').on('show.bs.modal', function (event) {
+  
+$(document).ready(function() {
+    $('#abrirChamadoModal').on('shown.bs.modal', function () {
+        // AJAX request to fetch user info
+        $.get('/account/getusername', function(userInfo) {
+            console.log('Success:', userInfo); // Log the userInfo
+            // set the value of the fields according to the returned user info
+            $('#solicitante').val(userInfo.nome);
+            $('#departamento').val(userInfo.departamento);
+            $('#cargo').val(userInfo.cargo);
+
+            // populate the 'Data' field
             var date = new Date();
             var day = String(date.getDate()).padStart(2, '0');
             var month = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
             var year = date.getFullYear();
 
             date = day + '/' + month + '/' + year;
-            $('#data').val(date); // Changed from '#modalData' to '#data'
+            $('#data').val(date);
+        }).fail(function(error) {
+            console.log('Error:', error); // Log the error
         });
     });
+});
+   
 </script>
     <div class="modal fade" id="abrirChamadoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

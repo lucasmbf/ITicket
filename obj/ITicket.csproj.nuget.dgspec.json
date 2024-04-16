@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\ITicket.csproj": {}
+    "c:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\ITicket.csproj": {
+    "c:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\ITicket.csproj",
+        "projectUniqueName": "c:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket.csproj",
         "projectName": "ITicket",
-        "projectPath": "c:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\ITicket.csproj",
+        "projectPath": "c:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket.csproj",
         "packagesPath": "C:\\Users\\Lucas Bianco\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\ITicket\\obj\\",
+        "outputPath": "c:\\Users\\Lucas Bianco\\Desktop\\ADS\\5 semestre\\Lab. Eng. Software\\ITicket\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lucas Bianco\\AppData\\Roaming\\NuGet\\NuGet.Config",
