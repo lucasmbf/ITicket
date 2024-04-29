@@ -93,26 +93,26 @@ $(document).ready(function() {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="/Chamado/Create" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="modaldata" class="form-label">Data:</label>
-                            <input type="text" class="form-control" id="data" readonly>
+                            <input type="text" class="form-control" id="data" name="DataAbertura" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="solicitante" class="form-label">Solicitante:</label>
-                            <input type="text" class="form-control" id="solicitante">
+                            <input type="text" class="form-control" id="solicitante" name="Solicitante">
                         </div>
                         <div class="mb-3">
                             <label for="departamento" class="form-label">Departamento:</label>
-                            <input type="text" class="form-control" id="departamento">
+                            <input type="text" class="form-control" id="departamento" name="Departamento">
                         </div>
                         <div class="mb-3">
                             <label for="cargo" class="form-label">Cargo:</label>
-                            <input type="text" class="form-control" id="cargo">
+                            <input type="text" class="form-control" id="cargo" name="Cargo">
                         </div>
                         <div class="mb-3">
                             <label for="tipoServico" class="form-label">Tipo de Serviço:</label>
-                            <select class="form-select" id="tipoServico">
+                            <select class="form-select" id="tipoServico" name="IdServico">
                                 @foreach (var servico in Model)
                                 {
                                     <option value="@servico.IdServico">@servico.Descricao</option>
@@ -121,25 +121,29 @@ $(document).ready(function() {
                         </div>
                         <div class="mb-3">
                             <label for="afetaMaisUsuarios" class="form-label">Afeta mais de um usuário:</label>
-                            <select class="form-select" id="afetaMaisUsuarios">
+                            <select class="form-select" id="afetaMaisUsuarios" name="AfetaMaisUsuarios">
                                 <option value="sim">Sim</option>
                                 <option value="nao">Não</option>
                             </select>
                         </div>
                         <div class="mb-3">
+                            <label for="titulo" class="form-label">Titulo:</label>
+                            <input type="text" class="form-control" id="titulo" name="Titulo">
+                        </div>
+                        <div class="mb-3">
                             <label for="descricaoProblema" class="form-label">Descrição do Problema:</label>
-                            <textarea class="form-control" id="descricaoProblema" rows="3" maxlength="500"></textarea>
+                            <textarea class="form-control" id="descricaoProblema" rows="3" maxlength="500" name="DescricaoProblema"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="arquivo" class="form-label">Upload de Arquivo:</label>
-                            <input type="file" class="form-control" id="arquivo">
+                            <input type="file" class="form-control" id="arquivo" name="Arquivo">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Enviar</button>
-                </div>
+                </div>                
             </div>
         </div>
     </div>

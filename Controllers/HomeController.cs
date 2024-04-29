@@ -45,10 +45,11 @@ namespace ITicket.Controllers {
         return View(servicos);
         }
 
-        public IActionResult Administracao() {
+       
+        public IActionResult Administracao()
+        {
             return View();
         }
-
         
         public IActionResult Login() {
 

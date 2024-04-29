@@ -3,61 +3,75 @@
 }
 <h1>@ViewData["Title"]</h1>
 
+
+@{
+    if (!String.IsNullOrEmpty(ViewBag.Message))
+    {
+        <div class="alert alert-success">
+            @ViewBag.Message
+        </div>
+    }
+}
+
+
+@model ITicket.Models.Usuario
+<form asp-action="Create" asp-controller="Administracao" method="post">
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <label for="Nome">Nome:</label>
-            <input type="text" class="form-control mb-3" id="Nome" name="Nome">
+            <input type="text" class="form-control mb-3" asp-for="Nome">
 
             <label for="Email">Email:</label>
-            <input type="email" class="form-control mb-3" id="Email" name="Email">
+            <input type="email" class="form-control mb-3" asp-for="Email">
         </div>
         <div class="col-md-6">
             <label for="Departamento">Departamento:</label>
-            <input type="text" class="form-control mb-3" id="Departamento" name="Departamento">
+            <input type="text" class="form-control mb-3" asp-for="Departamento">
 
             <label for="Cargo">Cargo:</label>
-            <input type="text" class="form-control mb-3" id="Cargo" name="Cargo">
+            <input type="text" class="form-control mb-3" asp-for="Cargo">
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-4">
             <label for="Telefone">Telefone:</label>
-            <input type="text" class="form-control mb-3" id="Telefone" name="Telefone">
+            <input type="text" class="form-control mb-3" asp-for="Telefone">
         </div>
         <div class="col-md-4">
             <label for="Ramal">Ramal:</label>
-            <input type="text" class="form-control mb-3" id="Ramal" name="Ramal">
+            <input type="text" class="form-control mb-3" asp-for="Ramal">
         </div>
         <div class="col-md-4">
             <label for="Gestor">Gestor:</label>
-            <input type="text" class="form-control mb-3" id="Gestor" name="Gestor">
+            <input type="text" class="form-control mb-3" asp-for="Gestor">
+        </div>
+        <div class="col-md-6">
+            <label for="Usuario">Usuário:</label>
+            <input type="text" class="form-control mb-3" asp-for="Username">
+            <label for="Senha">Senha:</label>
+            <input type="password" class="form-control mb-3" asp-for="Senha">
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-6">
-            <label for="Usuario">Usuário:</label>
-            <input type="text" class="form-control mb-3" id="Usuario" name="Usuario">
-            <label for="Senha">Senha:</label>
-            <input type="password" class="form-control mb-3" id="Senha" name="Senha">
-        </div>
+        
         <div class="col-md-6">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Solicitante" id="Solicitante">
+                <input class="form-check-input" type="checkbox" asp-for="IsSolicitante">
                 <label class="form-check-label" for="Solicitante">
                     Solicitante
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Atendente" id="Atendente">
+                <input class="form-check-input" type="checkbox" asp-for="IsAtendente">
                 <label class="form-check-label" for="Atendente">
                     Atendente
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="Adm" id="Adm">
+                <input class="form-check-input" type="checkbox" asp-for="IsAdm">
                 <label class="form-check-label" for="Adm">
                     Adm
                 </label>
@@ -71,6 +85,7 @@
         </div>
     </div>
 </div>
+</form>
 <br></br>
 <hr>
 <br></br>

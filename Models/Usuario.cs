@@ -17,7 +17,7 @@ namespace ITicket.Models {
         public bool IsSolicitante { get; set; }
         public bool IsAtendente { get; set; }
         public bool IsAdm { get; set; }
-        public string Username { get; internal set; } = string.Empty;
-        public string Senha { get; internal set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
+        public string Senha { get; set; } = string.Empty;
     }
 }
