@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ITicket.Models
 {
     public class Chamado
-    {
+{
         public Chamado()
         {
             Titulo = string.Empty;
@@ -29,13 +29,9 @@ namespace ITicket.Models
 
         public string Prioridade { get; set; }
 
-        public DateTime? DataAbertura { get; set; }
+        public DateTime? Abertura { get; set; }
 
-        public DateTime? HoraAbertura { get; set; }
-
-        public DateTime? DataFechamento { get; set; }
-
-        public DateTime? HoraFechamento { get; set; }
+        public DateTime? Fechamento { get; set; }
 
         public DateTime? HoraLimite { get; set; }
 
@@ -45,9 +41,13 @@ namespace ITicket.Models
 
         public string Anexo { get; set; }
 
+        [ForeignKey("Usuario")]
         public int IdUsuarioSolicitante { get; set; }
+        public Usuario? Usuario { get; set; } // Navigation property
 
+        [ForeignKey("Servico")]
         public int IdServico { get; set; }
+        public Servico? Servico { get; set; } // Navigation property
 
         public bool? Massivo { get; set; }
     }

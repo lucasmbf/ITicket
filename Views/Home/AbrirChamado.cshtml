@@ -1,7 +1,12 @@
+@model AbrirChamadoViewModel
+
 @{
-    ViewData["Title"] = "Abrir Chamado";
-    var usuario = ViewData["Usuario"] as Usuario;
-    var servicos = ViewData["Servicos"] as List<string>;
+    ViewData["Title"] = "Abrir Chamado";   
+    
+}
+
+@{
+    var usuario = Model.Usuario;
 }
     <div class="container">
     <div class="w-50 mx-auto"></div>
@@ -9,25 +14,28 @@
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label for="solicitante" class="form-label">Solicitante:</label>
-                <input type="text" class="form-control" id="solicitante" name="Solicitante" value="@((usuario != null) ? usuario.Nome : string.Empty)" readonly>
+                <input type="text" class="form-control" id="solicitante" name="Solicitante" value="@usuario?.Nome" readonly>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="departamento" class="form-label">Departamento:</label>
-                <input type="text" class="form-control" id="departamento" name="Departamento" value="@((usuario != null) ? usuario.Departamento : string.Empty)" readonly>
+                <input type="text" class="form-control" id="departamento" name="Departamento" value="@usuario?.Departamento" readonly>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="cargo" class="form-label">Cargo:</label>
-                <input type="text" class="form-control" id="cargo" name="Cargo" value="@((usuario != null) ? usuario.Cargo : string.Empty)" readonly>
+                <input type="text" class="form-control" id="cargo" name="Cargo" value="@usuario?.Cargo" readonly>
             </div>
                                    
                 <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="tipoServico" class="form-label">Tipo de Serviço:</label>
                     <select class="form-select" id="tipoServico" name="IdServico">
-                        @foreach (var descricao in servicos)
-                        {
-                            <option value="@descricao">@descricao</option>
+                        @if (ViewBag.Servico != null){
+                            @foreach (var descricao in ViewBag.Servico)
+                            {
+                                <option value="@descricao">@descricao</option>
+                            }
                         }
+                        
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
@@ -71,8 +79,8 @@
                     <input type="text" class="form-control" id="titulo" name="Titulo" required>
                 </div>
                 <div class="mb-3">
-                    <label for="descricaoProblema" class="form-label">Descrição do Problema:</label>
-                    <textarea class="form-control" id="descricaoProblema" rows="3" maxlength="500" name="DescricaoProblema" required></textarea>
+                    <label for="descricao" class="form-label">Descrição do Problema:</label>
+                    <textarea class="form-control" id="descricao" rows="3" maxlength="500" name="Descricao" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="arquivo" class="form-label">Upload de Arquivo:</label>

@@ -5,6 +5,7 @@ using ITicket.Models;
 using System.Configuration;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +30,9 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-
+builder.Logging.ClearProviders(); // Clear existing logging providers
+builder.Logging.AddConsole(); // Log to console
+builder.Logging.AddDebug(); // Log to debug output
 
 var app = builder.Build();
 
