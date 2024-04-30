@@ -31,129 +31,31 @@
 
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light>
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav mr-3">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Menu
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" asp-controller="Home" asp-action="MinhaConta">Minha Conta</a>
-                        <a class="dropdown-item" asp-controller="Home" asp-action="Administracao">Administração</a>
-                    </div>
-                </li>
-            </ul>
-
-
-
-<!-- Inicio do Modal de abertura de chamado -->
-
-<!-- Popula o campo Solicitante -->
-
-
-<!--Popula os campos necessarios com os dados da tabela Usuario, Servico e Chamado -->
-<script>
-  
-$(document).ready(function() {
-    $('#abrirChamadoModal').on('shown.bs.modal', function () {
-        // AJAX request to fetch user info
-        $.get('/account/getusername', function(userInfo) {
-            console.log('Success:', userInfo); // Log the userInfo
-            // set the value of the fields according to the returned user info
-            $('#solicitante').val(userInfo.nome);
-            $('#departamento').val(userInfo.departamento);
-            $('#cargo').val(userInfo.cargo);
-
-            // populate the 'Data' field
-            var date = new Date();
-            var day = String(date.getDate()).padStart(2, '0');
-            var month = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
-            var year = date.getFullYear();
-
-            date = day + '/' + month + '/' + year;
-            $('#data').val(date);
-        }).fail(function(error) {
-            console.log('Error:', error); // Log the error
-        });
-    });
-});
-   
-</script>
-    <div class="modal fade" id="abrirChamadoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Abrir Chamado</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="/Chamado/Create" method="post" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="modaldata" class="form-label">Data:</label>
-                            <input type="text" class="form-control" id="data" name="DataAbertura" readonly>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-3">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Menu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" asp-controller="Home" asp-action="MinhaConta">Minha Conta</a>
+                            <a class="dropdown-item" asp-controller="Home" asp-action="Administracao">Administração</a>
                         </div>
-                        <div class="mb-3">
-                            <label for="solicitante" class="form-label">Solicitante:</label>
-                            <input type="text" class="form-control" id="solicitante" name="Solicitante">
-                        </div>
-                        <div class="mb-3">
-                            <label for="departamento" class="form-label">Departamento:</label>
-                            <input type="text" class="form-control" id="departamento" name="Departamento">
-                        </div>
-                        <div class="mb-3">
-                            <label for="cargo" class="form-label">Cargo:</label>
-                            <input type="text" class="form-control" id="cargo" name="Cargo">
-                        </div>
-                        <div class="mb-3">
-                            <label for="tipoServico" class="form-label">Tipo de Serviço:</label>
-                            <select class="form-select" id="tipoServico" name="IdServico">
-                                @foreach (var servico in Model)
-                                {
-                                    <option value="@servico.IdServico">@servico.Descricao</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="afetaMaisUsuarios" class="form-label">Afeta mais de um usuário:</label>
-                            <select class="form-select" id="afetaMaisUsuarios" name="AfetaMaisUsuarios">
-                                <option value="sim">Sim</option>
-                                <option value="nao">Não</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="titulo" class="form-label">Titulo:</label>
-                            <input type="text" class="form-control" id="titulo" name="Titulo">
-                        </div>
-                        <div class="mb-3">
-                            <label for="descricaoProblema" class="form-label">Descrição do Problema:</label>
-                            <textarea class="form-control" id="descricaoProblema" rows="3" maxlength="500" name="DescricaoProblema"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="arquivo" class="form-label">Upload de Arquivo:</label>
-                            <input type="file" class="form-control" id="arquivo" name="Arquivo">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            <button type="submit" class="btn btn-primary">Enviar</button>
-                        </div>
-                    </form>
-                </div>                
+                    </li>
+                </ul>
+                <a class="btn btn-primary" asp-action="AbrirChamado" asp-controller="Chamado">
+                    Abrir Chamado
+                </a>
             </div>
         </div>
-    </div>
-    <!-- Fim do Modal de abertura de chamado -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#abrirChamadoModal">
-                Abrir Chamado
-            </button>
-        </div>
-    </div>
-</nav>
+    </nav>
+
+   
 
     <script>
         $(document).ready(function() {

@@ -1,0 +1,30 @@
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Threading.Tasks;
+
+public class StringToBoolBinder : IModelBinder
+{
+    public Task BindModelAsync(ModelBindingContext bindingContext)
+    {
+        var valueProviderResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
+
+        if (valueProviderResult == ValueProviderResult.None)
+        {
+            return Task.CompletedTask;
+        }
+
+        bindingContext.ModelState.SetModelValue(bindingContext.ModelName, valueProviderResult);
+
+        var value = valueProviderResult.FirstValue;
+
+        if (value == "Sim")
+        {
+            bindingContext.Result = ModelBindingResult.Success(true);
+        }
+        else
+        {
+            bindingContext.Result = ModelBindingResult.Success(false);
+        }
+
+        return Task.CompletedTask;
+    }
+}

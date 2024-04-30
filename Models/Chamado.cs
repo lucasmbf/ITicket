@@ -49,6 +49,6 @@ namespace ITicket.Models
 
         public int IdServico { get; set; }
 
-        public bool AfetaMaisUsuarios { get; set; }
+        public bool? Massivo { get; set; }
     }
 }

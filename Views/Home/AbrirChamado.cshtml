@@ -1,0 +1,86 @@
+@{
+    ViewData["Title"] = "Abrir Chamado";
+    var usuario = ViewData["Usuario"] as Usuario;
+    var servicos = ViewData["Servicos"] as List<string>;
+}
+    <div class="container">
+    <div class="w-50 mx-auto"></div>
+    <form action="/Chamado/AbrirChamado" method="post" enctype="multipart/form-data">       
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="solicitante" class="form-label">Solicitante:</label>
+                <input type="text" class="form-control" id="solicitante" name="Solicitante" value="@((usuario != null) ? usuario.Nome : string.Empty)" readonly>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="departamento" class="form-label">Departamento:</label>
+                <input type="text" class="form-control" id="departamento" name="Departamento" value="@((usuario != null) ? usuario.Departamento : string.Empty)" readonly>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="cargo" class="form-label">Cargo:</label>
+                <input type="text" class="form-control" id="cargo" name="Cargo" value="@((usuario != null) ? usuario.Cargo : string.Empty)" readonly>
+            </div>
+                                   
+                <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="tipoServico" class="form-label">Tipo de Serviço:</label>
+                    <select class="form-select" id="tipoServico" name="IdServico">
+                        @foreach (var descricao in servicos)
+                        {
+                            <option value="@descricao">@descricao</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Massivo" class="form-label">Afeta mais de um usuário:</label>
+                    <select class="form-select" id="Massivo" name="Massivo">
+                        <option value="sim">Sim</option>
+                        <option value="nao">Não</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="prioridade" class="form-label">Prioridade:</label>
+                    <input type="text" class="form-control" id="prioridade" name="Prioridade" readonly>
+                </div>
+            </div>
+
+            <script>
+                $(document).ready(function() {
+                    $('#tipoServico, #Massivo').change(function() {
+                        var descricao = $('#tipoServico').val();
+                        var massivo = $('#Massivo').val() === 'sim';
+
+                        
+                        $.get('/Chamado/GetPriorityForDescription?descricao=' + descricao, function(prioridade) {
+                            if (massivo) {
+                                if (prioridade === 'Alta' || prioridade === 'Media') {
+                                    prioridade = 'Alta';
+                                } else if (prioridade === 'Baixa') {
+                                    prioridade = 'Media';
+                                }
+                            }
+
+                            $('#prioridade').val(prioridade);
+                        });
+                    });
+                });
+            </script>
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Titulo:</label>
+                    <input type="text" class="form-control" id="titulo" name="Titulo" required>
+                </div>
+                <div class="mb-3">
+                    <label for="descricaoProblema" class="form-label">Descrição do Problema:</label>
+                    <textarea class="form-control" id="descricaoProblema" rows="3" maxlength="500" name="DescricaoProblema" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="arquivo" class="form-label">Upload de Arquivo:</label>
+                    <div class="d-flex">
+                        <input type="file" class="form-control me-2" id="arquivo" name="Arquivo">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+                
+            </form>
+    </div>

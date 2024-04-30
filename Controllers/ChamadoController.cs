@@ -1,46 +1,65 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using ITicket.Models; 
+using ITicket.Models;
+using ITicket.Controllers;
 
 public class ChamadoController : Controller
 {
-    private readonly ContextoDb _context; 
+    private readonly ContextoDb _contexto; 
 
-    public ChamadoController(ContextoDb context) 
+    public ChamadoController(ContextoDb contexto) 
     {
-        _context = context; 
+        _contexto = contexto; 
+    }
+    
+    [HttpGet]
+    public IActionResult GetPriorityForDescription(string descricao)
+    {
+        // Assuming _context is your DbContext
+        var servico = _contexto.Servico.FirstOrDefault(s => s.Descricao == descricao);
+
+        if (servico == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(servico.Prioridade);
+    }
+    public IActionResult AbrirChamado()
+    {        
+        var chamados = _contexto.Chamado.ToList();
+        var servicos = _contexto.Servico.Select(s => s.Descricao).ToList();
+
+        var username = HttpContext.Session.GetString("Username"); 
+        var usuario = _contexto.Usuario.FirstOrDefault(u => u.Username == username); 
+
+        if (usuario == null)
+    {
+        
+        return RedirectToAction("Login", "Account");
+    }
+        ViewData["Servicos"] = servicos;
+        ViewData["Usuario"] = usuario; 
+
+        return View("~/Views/Home/AbrirChamado.cshtml", chamados);
     }
 
     [HttpPost]
-    public IActionResult Create(ITicket.Models.Chamado chamado)
+    public IActionResult AbrirChamado(Chamado chamado, string Massivo)
     {
         if (ModelState.IsValid)
         {
-            chamado.HoraAbertura = DateTime.Now; 
-            chamado.DataAbertura = DateTime.Now; 
-
-            // Classify priority
-            var servico = _context.Servico.Find(chamado.IdServico);
-            if (servico.Descricao == "Alta" || chamado.AfetaMaisUsuarios) 
+            if (Massivo == "Sim")
             {
                 chamado.Prioridade = "Alta";
             }
-            else if (servico.Descricao == "Media")
-            {
-                chamado.Prioridade = "Media";
-            }
-            else
-            {
-                chamado.Prioridade = "Baixa";
-            }
 
-            _context.Chamado.Add(chamado);
-            _context.SaveChanges();
+            _contexto.Chamado.Add(chamado);
+            _contexto.SaveChanges();
 
-            return Json(new { success = true });
+            return RedirectToAction("Index");
         }
 
-        var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-        return Json(new { success = false, errors = errors });
+        return View("~/Views/Home/AbrirChamado.cshtml", chamado);
     }
 }

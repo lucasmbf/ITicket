@@ -17,51 +17,55 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ITicket
 build_property.RootNamespace = ITicket
-build_property.ProjectDir = c:\Users\Lucas Bianco\Desktop\ADS\5 semestre\Lab. Eng. Software\ITicket\
+build_property.ProjectDir = C:\Users\Lucas Bianco\Desktop\ADS\5 semestre\Lab. Eng. Software\ITicket\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = c:\Users\Lucas Bianco\Desktop\ADS\5 semestre\Lab. Eng. Software\ITicket
+build_property.MSBuildProjectDirectory = C:\Users\Lucas Bianco\Desktop\ADS\5 semestre\Lab. Eng. Software\ITicket
 build_property._RazorSourceGeneratorDebug = 
 
-[c:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Account/Login.cshtml]
+[C:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Home/Administracao.cshtml]
+[C:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Home/AbrirChamado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYnJpckNoYW1hZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Home/Administracao.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZG1pbmlzdHJhY2FvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Home/Index.cshtml]
+[C:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Home/Login.cshtml]
+[C:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Home/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Home/MinhaConta.cshtml]
+[C:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Home/MinhaConta.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNaW5oYUNvbnRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Shared/Error.cshtml]
+[C:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/_ViewImports.cshtml]
+[C:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/_ViewStart.cshtml]
+[C:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Shared/_Layout.cshtml]
+[C:/Users/Lucas Bianco/Desktop/ADS/5 semestre/Lab. Eng. Software/ITicket/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-hwn4tnu59u
