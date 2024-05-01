@@ -1,54 +1,53 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
+using ITicket.Models;
 
-namespace ITicket.Models
+public class Chamado
 {
-    public class Chamado
-{
-        public Chamado()
-        {
-            Titulo = string.Empty;
-            Descricao = string.Empty;
-            Status = "Novo";
-            Prioridade = string.Empty;
-            Observacao = string.Empty;
-            Solucao = string.Empty;
-            Anexo = string.Empty;
-        }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int IdChamado { get; set; }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdChamado { get; set; }
+    [Required]
+    public string Titulo { get; set; } = string.Empty;
 
-        public string Titulo { get; set; }
+    [Required]
+    public string Descricao { get; set; } = string.Empty;
 
-        public string Descricao { get; set; }
+   private string _status = "Novo";
+    [Required]
+    public string Status 
+{ 
+    get { return _status; }
+    set { _status = value; }
+}
 
-        public string Status { get; set; }
+    [Required]
+    public string Prioridade { get; set; } = string.Empty;
 
-        public string Prioridade { get; set; }
+    public DateTime? Abertura { get; set; }
 
-        public DateTime? Abertura { get; set; }
+    public DateTime? Fechamento { get; set; }
 
-        public DateTime? Fechamento { get; set; }
+    public DateTime? HoraLimite { get; set; }
 
-        public DateTime? HoraLimite { get; set; }
+    public string Observacao { get; set; } = string.Empty;
 
-        public string Observacao { get; set; }
+    public string Solucao { get; set; } = string.Empty;
 
-        public string Solucao { get; set; }
+    public string Anexo { get; set; } = string.Empty;
 
-        public string Anexo { get; set; }
+    public string Solicitante { get; set; } = string.Empty;
 
-        [ForeignKey("Usuario")]
-        public int IdUsuarioSolicitante { get; set; }
-        public Usuario? Usuario { get; set; } // Navigation property
+    public string Atendente { get; set; } = string.Empty;
 
-        [ForeignKey("Servico")]
-        public int IdServico { get; set; }
-        public Servico? Servico { get; set; } // Navigation property
+    public string DescricaoServico { get; set; } = string.Empty;
 
-        public bool? Massivo { get; set; }
-    }
+    public string Massivo { get; set; } = string.Empty;
+
+    public int IdServico { get; set; }
+
+    public Servico Servico { get; set; }
 }

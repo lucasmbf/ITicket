@@ -7,5 +7,6 @@ namespace ITicket.Models {
         public int IdServico { get; set; }
         public string Prioridade { get; set; } = string.Empty;
         public string Descricao { get; set; } = string.Empty;
+        
     }
 }

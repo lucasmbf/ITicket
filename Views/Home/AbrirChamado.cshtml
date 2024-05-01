@@ -1,43 +1,40 @@
-@model AbrirChamadoViewModel
+@using ITicket.Models
+@model ChamadoUsuarioViewModel
 
 @{
     ViewData["Title"] = "Abrir Chamado";   
     
 }
 
-@{
-    var usuario = Model.Usuario;
-}
+
     <div class="container">
     <div class="w-50 mx-auto"></div>
     <form action="/Chamado/AbrirChamado" method="post" enctype="multipart/form-data">       
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label for="solicitante" class="form-label">Solicitante:</label>
-                <input type="text" class="form-control" id="solicitante" name="Solicitante" value="@usuario?.Nome" readonly>
+                <input type="text" class="form-control" id="solicitante" name="Solicitante" value="@(Model.Usuario?.Nome)" readonly>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="departamento" class="form-label">Departamento:</label>
-                <input type="text" class="form-control" id="departamento" name="Departamento" value="@usuario?.Departamento" readonly>
+                <input type="text" class="form-control" id="departamento" name="Departamento" value="@Model.Usuario?.Departamento" readonly>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="cargo" class="form-label">Cargo:</label>
-                <input type="text" class="form-control" id="cargo" name="Cargo" value="@usuario?.Cargo" readonly>
+                <input type="text" class="form-control" id="cargo" name="Cargo" value="@Model.Usuario?.Cargo" readonly>
             </div>
                                    
                 <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="tipoServico" class="form-label">Tipo de Serviço:</label>
                     <select class="form-select" id="tipoServico" name="IdServico">
-                        @if (ViewBag.Servico != null){
-                            @foreach (var descricao in ViewBag.Servico)
-                            {
-                                <option value="@descricao">@descricao</option>
-                            }
+                        @foreach (var servico in Model.Servico)
+                        {
+                            <option value="@servico">@servico</option>
                         }
-                        
                     </select>
                 </div>
+            
                 <div class="col-md-6 mb-3">
                     <label for="Massivo" class="form-label">Afeta mais de um usuário:</label>
                     <select class="form-select" id="Massivo" name="Massivo">
@@ -49,7 +46,7 @@
             <div class="row">
                 <div class="col-md-12 mb-3">
                     <label for="prioridade" class="form-label">Prioridade:</label>
-                    <input type="text" class="form-control" id="prioridade" name="Prioridade" readonly>
+                    <input type="text" class="form-control" id="prioridade" name="Prioridade" value="@Model.Chamado.Prioridade" readonly>
                 </div>
             </div>
 
