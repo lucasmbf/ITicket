@@ -47,6 +47,8 @@ public class Chamado
 
     public string Massivo { get; set; } = string.Empty;
 
+
+   [ForeignKey("Servico")]
     public int IdServico { get; set; }
 
     public Servico Servico { get; set; }

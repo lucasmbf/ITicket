@@ -53,29 +53,39 @@ public class ChamadoController : Controller
     {
         if(ModelState.IsValid)
         {
-        
-        chamado.Abertura = DateTime.Now;
-        var servico = _contexto.Servico.FirstOrDefault(s => s.Descricao == chamado.Servico.Descricao);
-        chamado.IdServico = servico != null ? (int)servico.IdServico : 0;
-        
-        
-        bool isMassivo = false;
-        bool.TryParse(chamado.Massivo, out isMassivo);
-        if (isMassivo)
-        {
-            if (servico.Prioridade == "Baixa")
+            chamado.Abertura = DateTime.Now;
+
+            if(chamado.Servico != null)
             {
-                chamado.Prioridade = "Media";
+                var servico = _contexto.Servico.FirstOrDefault(s => s.Descricao == chamado.Servico.Descricao);
+
+                if(servico != null)
+                {
+                    chamado.IdServico = (int)servico.IdServico;
+
+                    bool isMassivo = false;
+                    bool.TryParse(chamado.Massivo, out isMassivo);
+                    if (isMassivo)
+                    {
+                        chamado.Prioridade = servico.Prioridade == "Baixa" ? "Media" : "Alta";
+                    }
+                    else
+                    {
+                        chamado.Prioridade = servico.Prioridade;
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "No matching service found.");
+                    return View("~/Views/Home/Error.cshtml");
+                }
             }
             else
             {
-                chamado.Prioridade = "Alta";
+                ModelState.AddModelError("", "Service is null.");
+                return View("~/Views/Home/Error.cshtml");
             }
-        }
-        else
-        {
-            chamado.Prioridade = servico.Prioridade;
-        }    
+
             System.Diagnostics.Debug.WriteLine($"Prioridade: {chamado.Prioridade}");
             _contexto.Add(chamado);
             _contexto.SaveChanges();
@@ -83,7 +93,7 @@ public class ChamadoController : Controller
             ViewBag.Message = "Chamado Aberto com Sucesso!";
 
             var username = HttpContext.Session.GetString("Username");
-            var usuario = _contexto.Usuario.FirstOrDefault(u => u.Username == username); // Replace this with your method for getting the Usuario object
+            var usuario = _contexto.Usuario.FirstOrDefault(u => u.Username == username);
 
             if (usuario == null)
             {
@@ -92,10 +102,11 @@ public class ChamadoController : Controller
             }
 
             var viewModel = new ChamadoUsuarioViewModel
-            {
-                Chamado = chamado,
-                Usuario = usuario
-            };
+{
+    Chamado = chamado,
+    Usuario = usuario,
+    Servico = _contexto.Servico.Select(s => s.Descricao).ToList() // Fetch all Servico descriptions from your database
+};
 
             return View("~/Views/Home/AbrirChamado.cshtml", viewModel);
         }
@@ -103,16 +114,17 @@ public class ChamadoController : Controller
         {
             ModelState.AddModelError("", "There was an error opening the ticket. Please try again.");
 
-        var username = HttpContext.Session.GetString("Username");
-        var usuario = _contexto.Usuario.FirstOrDefault(u => u.Username == username);
+            var username = HttpContext.Session.GetString("Username");
+            var usuario = _contexto.Usuario.FirstOrDefault(u => u.Username == username);
 
-        var viewModel = new ChamadoUsuarioViewModel
-        {
-            Chamado = chamado,
-            Usuario = usuario
-        };
+            var viewModel = new ChamadoUsuarioViewModel
+            {
+                Chamado = chamado,
+                Usuario = usuario,
+                Servico = _contexto.Servico.Select(s => s.Descricao).ToList() // Fetch all Servico descriptions from your database
+            };
 
-        return View("~/Views/Home/AbrirChamado.cshtml", viewModel);
+            return View("~/Views/Home/AbrirChamado.cshtml", viewModel);
         }
     }
 }

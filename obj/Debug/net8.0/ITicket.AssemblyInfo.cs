@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ITicket")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbfafed6a4c89b511919c36cff623385f251e4a4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+320d6e3c2fea07ba09cc1fb06dafbb6301f84641")]
 [assembly: System.Reflection.AssemblyProductAttribute("ITicket")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ITicket")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
