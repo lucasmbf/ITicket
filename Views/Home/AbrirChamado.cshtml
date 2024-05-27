@@ -8,6 +8,22 @@
 
 
     <div class="container">
+        @{
+        var message = TempData["Message"] as string;
+        if (!string.IsNullOrEmpty(message))
+        {
+            <div class="alert alert-success">
+                @message
+            </div>
+        }
+
+        if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </div>
+        }
+    }
     <div class="w-50 mx-auto"></div>
     <form action="/Chamado/AbrirChamado" method="post" enctype="multipart/form-data">       
         <div class="row">
@@ -27,7 +43,7 @@
                 <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="tipoServico" class="form-label">Tipo de Serviço:</label>
-                    <select class="form-select" id="tipoServico" name="IdServico">
+                    <select class="form-select" id="tipoServico" name="Servico.Descricao">
                         @foreach (var servico in Model.Servico)
                         {
                             <option value="@servico">@servico</option>

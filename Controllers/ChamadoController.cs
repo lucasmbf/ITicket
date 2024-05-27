@@ -53,15 +53,25 @@ public class ChamadoController : Controller
     {
         if(ModelState.IsValid)
         {
-            chamado.Abertura = DateTime.Now;
+            
 
+            chamado.Abertura = DateTime.Now;
+            chamado.Status = "Novo";
             if(chamado.Servico != null)
             {
                 var servico = _contexto.Servico.FirstOrDefault(s => s.Descricao == chamado.Servico.Descricao);
 
                 if(servico != null)
                 {
-                    chamado.IdServico = (int)servico.IdServico;
+                    if(servico.IdServico != null) // Check if IdServico is not null
+                    {
+                        chamado.IdServico = (int)servico.IdServico;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Service Id is null.");
+                        return View("~/Views/Home/Error.cshtml");
+                    }
 
                     bool isMassivo = false;
                     bool.TryParse(chamado.Massivo, out isMassivo);
@@ -90,7 +100,7 @@ public class ChamadoController : Controller
             _contexto.Add(chamado);
             _contexto.SaveChanges();
 
-            ViewBag.Message = "Chamado Aberto com Sucesso!";
+            TempData["Message"] = "Chamado Aberto com Sucesso!";
 
             var username = HttpContext.Session.GetString("Username");
             var usuario = _contexto.Usuario.FirstOrDefault(u => u.Username == username);
@@ -102,17 +112,17 @@ public class ChamadoController : Controller
             }
 
             var viewModel = new ChamadoUsuarioViewModel
-{
-    Chamado = chamado,
-    Usuario = usuario,
-    Servico = _contexto.Servico.Select(s => s.Descricao).ToList() // Fetch all Servico descriptions from your database
-};
+            {
+                Chamado = chamado,
+                Usuario = usuario,
+                Servico = _contexto.Servico.Select(s => s.Descricao).ToList() // Fetch all Servico descriptions from your database
+            };
 
             return View("~/Views/Home/AbrirChamado.cshtml", viewModel);
         }
         else
         {
-            ModelState.AddModelError("", "There was an error opening the ticket. Please try again.");
+            ModelState.AddModelError(string.Empty, "Nao foi possivel abrir o chamado.");
 
             var username = HttpContext.Session.GetString("Username");
             var usuario = _contexto.Usuario.FirstOrDefault(u => u.Username == username);
