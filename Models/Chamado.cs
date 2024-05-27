@@ -40,6 +40,7 @@ public class Chamado
     public string Anexo { get; set; } = string.Empty;
 
     public string Solicitante { get; set; } = string.Empty;
+     public string EmailSolicitante { get; set; } = string.Empty;
 
     public string Atendente { get; set; } = string.Empty;
 

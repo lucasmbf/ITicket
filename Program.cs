@@ -30,9 +30,14 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+//Adiciona servico de email
+builder.Services.AddTransient<IEmailService, EmailService>();
+
 builder.Logging.ClearProviders(); // Clear existing logging providers
 builder.Logging.AddConsole(); // Log to console
 builder.Logging.AddDebug(); // Log to debug output
+
+
 
 var app = builder.Build();
 

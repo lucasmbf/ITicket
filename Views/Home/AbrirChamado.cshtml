@@ -31,6 +31,7 @@
                 <label for="solicitante" class="form-label">Solicitante:</label>
                 <input type="text" class="form-control" id="solicitante" name="Solicitante" value="@(Model.Usuario?.Nome)" readonly>
             </div>
+            
             <div class="col-md-4 mb-3">
                 <label for="departamento" class="form-label">Departamento:</label>
                 <input type="text" class="form-control" id="departamento" name="Departamento" value="@Model.Usuario?.Departamento" readonly>
@@ -38,6 +39,10 @@
             <div class="col-md-4 mb-3">
                 <label for="cargo" class="form-label">Cargo:</label>
                 <input type="text" class="form-control" id="cargo" name="Cargo" value="@Model.Usuario?.Cargo" readonly>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="text" class="form-control" id="email" name="Email" value="@Model.Usuario?.Email" readonly>
             </div>
                                    
                 <div class="row">

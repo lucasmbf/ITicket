@@ -5,15 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 using ITicket.Models; 
 using System.ComponentModel;
 
+
 public class ChamadoController : Controller 
 {
     private readonly ContextoDb _contexto;
+    private readonly IEmailService _emailService;
     
-    public ChamadoController(ContextoDb context) 
+    public ChamadoController(ContextoDb context, IEmailService emailService)
     {
         _contexto = context;
+        _emailService = emailService;
     }
 
+    
 
     [HttpGet]
     public IActionResult GetPriorityForDescription(string descricao)
@@ -33,6 +37,8 @@ public class ChamadoController : Controller
         var loggedInUsername = HttpContext.Session.GetString("Username");
         var user = _contexto.Usuario.FirstOrDefault(u => u.Username == loggedInUsername);
         var servicos = _contexto.Servico.Select(s => s.Descricao).ToList();
+        var email = user.Email;
+        
 
         var viewModel = new ChamadoUsuarioViewModel
         {
@@ -41,6 +47,7 @@ public class ChamadoController : Controller
                 Nome = user.Nome,
                 Departamento = user.Departamento,
                 Cargo = user.Cargo,
+                Email = user.Email,
             },
             Servico = servicos // Add the Descricao values to the view model
         };
@@ -49,7 +56,7 @@ public class ChamadoController : Controller
     }
 
     [HttpPost]
-    public IActionResult AbrirChamado(Chamado chamado)
+    public async Task<IActionResult> AbrirChamado(Chamado chamado)
     {
         if(ModelState.IsValid)
         {
@@ -65,7 +72,7 @@ public class ChamadoController : Controller
                 {
                     if(servico.IdServico != null) // Check if IdServico is not null
                     {
-                        chamado.IdServico = (int)servico.IdServico;
+                        chamado.Servico = servico;
                     }
                     else
                     {
@@ -100,23 +107,29 @@ public class ChamadoController : Controller
             _contexto.Add(chamado);
             _contexto.SaveChanges();
 
-            TempData["Message"] = "Chamado Aberto com Sucesso!";
-
             var username = HttpContext.Session.GetString("Username");
             var usuario = _contexto.Usuario.FirstOrDefault(u => u.Username == username);
 
-            if (usuario == null)
-            {
-                ModelState.AddModelError("", "The user does not exist.");
-                return View("~/Views/Home/Error.cshtml");
-            }
+            if (usuario != null)
+        {
+           
+                await _emailService.SendEmailAsync(usuario.Email, "iticket.lab@gmail.com", chamado.Titulo, chamado.Descricao);
+           
+        }
+        else
+        {
+            ModelState.AddModelError("", "The user does not exist.");
+            return View("~/Views/Home/Error.cshtml");
+        }
 
-            var viewModel = new ChamadoUsuarioViewModel
-            {
-                Chamado = chamado,
-                Usuario = usuario,
-                Servico = _contexto.Servico.Select(s => s.Descricao).ToList() // Fetch all Servico descriptions from your database
-            };
+        TempData["Message"] = "Chamado Aberto com Sucesso!";
+
+        var viewModel = new ChamadoUsuarioViewModel
+        {
+            Chamado = chamado,
+            Usuario = usuario,
+            Servico = _contexto.Servico.Select(s => s.Descricao).ToList() // Fetch all Servico descriptions from your database
+        };
 
             return View("~/Views/Home/AbrirChamado.cshtml", viewModel);
         }
