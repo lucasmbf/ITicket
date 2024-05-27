@@ -35,14 +35,20 @@ namespace ITicket.Controllers {
         return View(usuario);
     }
         
-        public IActionResult Index() {
+        public IActionResult Index(int page = 1) {
         var username = HttpContext.Session.GetString("Username");          
          if(username == null){
              return View("Login");
          }
 
-        var servicos = _contexto.Servico.ToList();
-        return View(servicos);
+        
+        int pageSize = 10;
+        var chamados = _contexto.ChamadoView
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+            ViewBag.Page = page;
+            return View(chamados);
         }
 
        

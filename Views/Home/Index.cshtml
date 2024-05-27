@@ -1,4 +1,4 @@
-﻿@model List<ITicket.Models.Servico>
+﻿@model List<ITicket.Models.ChamadoView>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -135,20 +135,25 @@
                         <th scope="col">SLA</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    @for (int i = 1; i <= 10; i++) {
+                    @foreach (var chamado in Model) {
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>@chamado.IdChamado</td>
+                            <td>@chamado.Abertura</td>
+                            <td>@chamado.Solicitante</td>
+                            <td>@chamado.Status</td>
+                            <td>@chamado.HoraLimite</td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
-
+        <div class="pagination">
+            <a href="@Url.Action("Index", new { page = 1 })">First</a>
+            <a href="@Url.Action("Index", new { page = ViewBag.Page - 1 })">Previous</a>
+            <a href="@Url.Action("Index", new { page = ViewBag.Page + 1 })">Next</a>
+        </div>
 
 
     </div>

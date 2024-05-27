@@ -8,8 +8,20 @@ namespace ITicket.Models {
         
         public DbSet<Servico> Servico { get; set; }
 
-                
+        public DbSet<ChamadoView> ChamadoView { get; set; }        
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ChamadoView>(entity =>
+            {
+                entity.HasNoKey(); // Because views don't have primary keys
+
+                entity.ToView("ChamadoView"); // Map to the view in the database
+            });
+
+            
+        }
     }
 }
 
