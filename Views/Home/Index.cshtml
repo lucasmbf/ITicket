@@ -88,9 +88,10 @@
                         <option value="opcao1">Nr.Chamado</option>
                         <option value="opcao2">Data</option>
                         <option value="opcao3">SLA</option>
-                        <option value="opcao3">Solicitante</option>
-                        <option value="opcao3">Atendente</option>
-                        <option value="opcao3">E-mail</option>
+                        <option value="opcao4">Solicitante</option>
+                        <option value="opcao5">Atendente</option>
+                        <option value="opcao6">E-mail</option>
+                        <option value="opcao7">Status</option>
                     </select>
                     <br>
 
@@ -116,7 +117,7 @@
         </div>
     </div>
     <div class="col-sm-2">
-        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <button id="filtrar-button" class="btn btn-primary">Filtrar</button>
     </div>
 </div>
         </form>
@@ -128,11 +129,11 @@
             <table class="table mt-3">
                 <thead>
                     <tr>
-                        <th scope="col">NR.CHAMADO</th>
-                        <th scope="col">DATA DE ABERTURA</th>
-                        <th scope="col">CRIADO POR</th>
-                        <th scope="col">STATUS</th>
-                        <th scope="col">SLA</th>
+                        <th scope="col"><a href="@Url.Action("Index", new { sort = "IdChamado" })">NR.CHAMADO</a></th>
+                        <th scope="col"><a href="@Url.Action("Index", new { sort = "Abertura" })">DATA DE ABERTURA</a></th>
+                        <th scope="col"><a href="@Url.Action("Index", new { sort = "Solicitante" })">CRIADO POR</a></th>
+                        <th scope="col"><a href="@Url.Action("Index", new { sort = "Status" })">STATUS</a></th>
+                        <th scope="col"><a href="@Url.Action("Index", new { sort = "HoraLimite" })">SLA</a></th>
                     </tr>
                 </thead>
 
@@ -189,9 +190,32 @@
     </script>
 
     
+    
+    
 
-    <!-- Script de envio do formulário de login -->
+    
     <script>
+
+        
+            $(document).ready(function() {
+                $('#filtrar-button').on('click', function(e) {
+                    e.preventDefault(); // Prevent the form from submitting
+
+                    var selectedOption = $('#filtro').val(); // Get the selected option from the dropdown
+                    var inputValue = $('#texto-exemplo').val().toLowerCase(); // Get the input value
+
+                    // Filter the table
+                    $('table tbody tr').each(function() {
+                        var row = $(this);
+                        var cellText = row.find('td.' + selectedOption).text().toLowerCase();
+                        row.toggle(cellText.indexOf(inputValue) !== -1);
+                    });
+                });
+            });
+
+    
+
+    <script>  
         $(document).ready(function () {
             $('#loginForm').submit(function (event) {
                 event.preventDefault(); // Impede o envio padrão do formulário
@@ -220,21 +244,21 @@
     </script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-<script>
-    function checkLogin(event) {
-        $.ajax({
-            url: '@Url.Action("IsSignedIn", "Account")',
-            method: 'GET',
-            success: function(isSignedIn) {
-                if (!isSignedIn) {
-                    event.preventDefault();
-                    alert("Faça login primeiro");
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        function checkLogin(event) {
+            $.ajax({
+                url: '@Url.Action("IsSignedIn", "Account")',
+                method: 'GET',
+                success: function(isSignedIn) {
+                    if (!isSignedIn) {
+                        event.preventDefault();
+                        alert("Faça login primeiro");
+                    }
                 }
-            }
-        });
-    }
+            });
+        }
 
     document.getElementById('abrirChamadoButton').addEventListener('click', function() {
         $('#abrirChamadoModal').modal('show');
