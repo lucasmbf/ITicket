@@ -35,67 +35,92 @@ namespace ITicket.Controllers {
         return View(usuario);
     }
         
-       public IActionResult Index(int page = 1, string sort = null, string filtro = null, string search = null) {
+public IActionResult Index(int page = 1, string sort = null, string filtro = null, string valor = null) 
+{
     var username = HttpContext.Session.GetString("Username");          
-    if(username == null){
+    if(username == null)
+    {
         return View("Login");
     }
 
     int pageSize = 10;
     var chamados = _contexto.ChamadoView.AsQueryable();
+    ViewBag.Filtro = filtro;
+    ViewBag.Valor = valor;
 
-    // aplica os filtros se especificados
-    if (!string.IsNullOrEmpty(filtro) && !string.IsNullOrEmpty(search)) {
-        switch (filtro) {
-        case "IdChamado":
-            chamados = chamados.Where(c => c.IdChamado.ToString().Contains(search));
+    if (filtro == "Todos")
+    {
+        chamados = chamados.Where(c => c.Abertura >= DateTime.Now.AddDays(-365));
+    }
+    else if (!string.IsNullOrEmpty(filtro) && !string.IsNullOrEmpty(valor)) 
+    {
+        switch (filtro) 
+        {
+            case "IdChamado":
+            if (int.TryParse(valor, out int idChamado))
+            {
+                chamados = chamados.Where(c => c.IdChamado == idChamado);
+            }
+            // Handle invalid input
+            else
+            {
+                // Log error, show error message, etc.
+            }
             break;
         case "Abertura":
-            chamados = chamados.Where(c => c.Abertura.HasValue && c.Abertura.Value.ToString().Contains(search));
+            if (DateTime.TryParse(valor, out DateTime abertura))
+            {
+                chamados = chamados.Where(c => c.Abertura.HasValue && c.Abertura.Value.Date == abertura.Date);
+            }
+            // Handle invalid input
+            else
+            {
+                // Log error, show error message, etc.
+            }
             break;
         case "Solicitante":
-            chamados = chamados.Where(c => c.Solicitante.Contains(search));
+            chamados = chamados.Where(c => c.Solicitante.ToLower().Contains(valor.ToLower()));
             break;
         case "Status":
-            chamados = chamados.Where(c => c.Status.Contains(search));
+            chamados = chamados.Where(c => c.Status.ToLower().Contains(valor.ToLower()));
             break;
         case "HoraLimite":
-        DateTime searchDate;
-        if (DateTime.TryParse(search, out searchDate)) {
-            chamados = chamados.Where(c => c.HoraLimite.HasValue && c.HoraLimite.Value.Date == searchDate.Date);
-        }
-        break;
+            if (DateTime.TryParse(valor, out DateTime horaLimite))
+            {
+                chamados = chamados.Where(c => c.HoraLimite.HasValue && c.HoraLimite.Value.Date == horaLimite.Date);
+            }
+            // Handle invalid input
+            else
+            {
+                // Log error, show error message, etc.
+            }
+            break;
         }
     }
 
-    // sort toda vez que o titulo da coluna é clicado
-    if (!string.IsNullOrEmpty(sort)) {
-        switch (sort) {
-        case "IdChamado":
-            chamados = chamados.OrderBy(c => c.IdChamado);
-            break;
-        case "Abertura":
-            chamados = chamados.OrderBy(c => c.Abertura);
-            break;
-        case "Solicitante":
-            chamados = chamados.OrderBy(c => c.Solicitante);
-            break;
-        case "Status":
-            chamados = chamados.OrderBy(c => c.Status);
-            break;
-        case "HoraLimite":
-            chamados = chamados.OrderBy(c => c.HoraLimite);
-            break;
-       
+    // Sort every time the column title is clicked
+    if (!string.IsNullOrEmpty(sort)) 
+    {
+        switch (sort) 
+        {
+            case "IdChamado":
+                chamados = chamados.OrderBy(c => c.IdChamado);
+                break;
+            case "Abertura":
+                chamados = chamados.OrderBy(c => c.Abertura);
+                break;
+            case "Solicitante":
+                chamados = chamados.OrderBy(c => c.Solicitante);
+                break;
+            case "Status":
+                chamados = chamados.OrderBy(c => c.Status);
+                break;
+            case "HoraLimite":
+                chamados = chamados.OrderBy(c => c.HoraLimite);
+                break;
         }
     }
 
-    // Apply pagination
-    chamados = chamados
-        .Skip((page - 1) * pageSize)
-        .Take(pageSize);
-
-    ViewBag.Page = page;
     return View(chamados.ToList());
 }
 

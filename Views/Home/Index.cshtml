@@ -23,11 +23,10 @@
     <!-- JavaScript do Bootstrap 4 (via CDN, necessário para alguns recursos do Bootstrap) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- CSS for flatpickr -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-    <!-- JavaScript for flatpickr -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
 
 </head>
 <body>
@@ -81,45 +80,21 @@
         <br>
         <br>
         <form>
-            <div class="form-group row">
-                <label for="filtro" class="col-sm-2 col-form-label">Filtro:</label>
-                <div class="col-sm-3">
-                    <select class="form-control" id="filtro">
-                        <option value="opcao1">Nr.Chamado</option>
-                        <option value="opcao2">Data</option>
-                        <option value="opcao3">SLA</option>
-                        <option value="opcao4">Solicitante</option>
-                        <option value="opcao5">Atendente</option>
-                        <option value="opcao6">E-mail</option>
-                        <option value="opcao7">Status</option>
-                    </select>
-                    <br>
-
-                </div>
-                    <div class="col-sm-4">
-    <div class="input-group">
-        <input type="text" class="form-control" id="texto-exemplo" placeholder="Nr.Chamado, Solicitante, SLA, etc.">
-    </div>
-</div>
-<div class="form-group row">
-    <label for="de" class="col-sm-2 col-form-label">De:</label>
-    <div class="col-sm-3">
-        <div class="input-group date">
-            <input type="text" class="form-control" id="de">
-            <button class="btn btn-outline-secondary" type="button" id="deBtn"><i class="bi bi-calendar3"></i></button>
+          <div class="input-group">
+            <select id="filtro" class="form-control">
+                <option value="IdChamado">Todos</option>
+                <option value="IdChamado">Nr. Chamado</option>
+                <option value="Abertura">Data de Abertura</option>
+                <option value="Solicitante">Criado Por</option>
+                <option value="Status">Status</option>
+                <option value="HoraLimite">SLA</option>
+            </select>
+            <input type="text" class="form-control" id="texto-exemplo" placeholder="Enter search value">
+            <input type="text" class="form-control d-none" id="data-inicio" placeholder="Data de Início">
+            <input type="text" class="form-control d-none" id="data-fim" placeholder="Data de Fim">
+            <button id="filtrar-button" class="btn btn-primary">Filtrar</button>
         </div>
-    </div>
-    <label for="ate" class="col-sm-1 col-form-label">Até:</label>
-    <div class="col-sm-3">
-        <div class="input-group date">
-            <input type="text" class="form-control" id="ate">
-            <button class="btn btn-outline-secondary" type="button" id="ateBtn"><i class="bi bi-calendar3"></i></button>
-        </div>
-    </div>
-    <div class="col-sm-2">
-        <button id="filtrar-button" class="btn btn-primary">Filtrar</button>
-    </div>
-</div>
+        
         </form>
 
         <div class="container mt-5">
@@ -150,10 +125,10 @@
                 </tbody>
             </table>
         </div>
-        <div class="pagination">
-            <a href="@Url.Action("Index", new { page = 1 })">First</a>
-            <a href="@Url.Action("Index", new { page = ViewBag.Page - 1 })">Previous</a>
-            <a href="@Url.Action("Index", new { page = ViewBag.Page + 1 })">Next</a>
+       <div class="pagination">
+            <a href="@Url.Action("Index", new { page = 1, filtro = ViewBag.Filtro, valor = ViewBag.Valor })">First</a>
+            <a href="@Url.Action("Index", new { page = ViewBag.Page - 1, filtro = ViewBag.Filtro, valor = ViewBag.Valor })">Previous</a>
+            <a href="@Url.Action("Index", new { page = ViewBag.Page + 1, filtro = ViewBag.Filtro, valor = ViewBag.Valor })">Next</a>
         </div>
 
 
@@ -172,24 +147,31 @@
 
     <!-- Seu script de inicialização do datepicker -->
     <script>
-        var dePicker = flatpickr("#de", {
-        dateFormat: "d/m/Y"
-    });
+        var urlAction = '@Url.Action("Index")';
 
-    var atePicker = flatpickr("#ate", {
-        dateFormat: "d/m/Y"
-    });
+        $(document).ready(function() {
+            $('#filtro').on('change', function() {
+                var selectedOption = $(this).val();
 
-    document.getElementById("deBtn").addEventListener("click", function() {
-        dePicker.open();
-    });
+                if (selectedOption === 'Abertura' || selectedOption === 'HoraLimite') {
+                    $('#texto-exemplo').addClass('d-none');
+                    $('#data-inicio, #data-fim').removeClass('d-none').datepicker();
+                } else {
+                    $('#texto-exemplo').removeClass('d-none');
+                    $('#data-inicio, #data-fim').addClass('d-none');
+                }
+            });
 
-    document.getElementById("ateBtn").addEventListener("click", function() {
-        atePicker.open();
-    });
-    </script>
+            $('#filtrar-button').on('click', function(e) {
+                e.preventDefault();
 
-    
+                var selectedOption = $('#filtro').val();
+                var inputValue = selectedOption === 'Abertura' || selectedOption === 'HoraLimite' ? $('#data-inicio').val() + ' - ' + $('#data-fim').val() : $('#texto-exemplo').val();
+
+                window.location.href = urlAction + '?filtro=' + selectedOption + '&valor=' + inputValue;
+            });
+        });
+    </script> 
     
     
 
@@ -197,19 +179,15 @@
     <script>
 
         
-            $(document).ready(function() {
+           $(document).ready(function() {
                 $('#filtrar-button').on('click', function(e) {
                     e.preventDefault(); // Prevent the form from submitting
 
                     var selectedOption = $('#filtro').val(); // Get the selected option from the dropdown
-                    var inputValue = $('#texto-exemplo').val().toLowerCase(); // Get the input value
+                    var inputValue = $('#texto-exemplo').val(); // Get the input value
 
-                    // Filter the table
-                    $('table tbody tr').each(function() {
-                        var row = $(this);
-                        var cellText = row.find('td.' + selectedOption).text().toLowerCase();
-                        row.toggle(cellText.indexOf(inputValue) !== -1);
-                    });
+                    // Redirect to the Index action with the selected option and input value as parameters
+                    window.location.href = '@Url.Action("Index")?filtro=' + selectedOption + '&valor=' + inputValue;
                 });
             });
 
@@ -242,30 +220,7 @@
             });
         });
     </script>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script>
-        function checkLogin(event) {
-            $.ajax({
-                url: '@Url.Action("IsSignedIn", "Account")',
-                method: 'GET',
-                success: function(isSignedIn) {
-                    if (!isSignedIn) {
-                        event.preventDefault();
-                        alert("Faça login primeiro");
-                    }
-                }
-            });
-        }
-
-    document.getElementById('abrirChamadoButton').addEventListener('click', function() {
-        $('#abrirChamadoModal').modal('show');
-    });
-</script>
-
-    
+        
 
 </body>
 </html>
