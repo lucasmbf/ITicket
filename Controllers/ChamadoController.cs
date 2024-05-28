@@ -2,22 +2,22 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using ITicket.Models; 
+using ITicket.Models;
 using System.ComponentModel;
 
 
-public class ChamadoController : Controller 
+public class ChamadoController : Controller
 {
     private readonly ContextoDb _contexto;
     private readonly IEmailService _emailService;
-    
+
     public ChamadoController(ContextoDb context, IEmailService emailService)
     {
         _contexto = context;
         _emailService = emailService;
     }
 
-    
+
 
     [HttpGet]
     public IActionResult GetPriorityForDescription(string descricao)
@@ -38,7 +38,7 @@ public class ChamadoController : Controller
         var user = _contexto.Usuario.FirstOrDefault(u => u.Username == loggedInUsername);
         var servicos = _contexto.Servico.Select(s => s.Descricao).ToList();
         var email = user.Email;
-        
+
 
         var viewModel = new ChamadoUsuarioViewModel
         {
@@ -58,23 +58,22 @@ public class ChamadoController : Controller
     [HttpPost]
     public async Task<IActionResult> AbrirChamado(Chamado chamado)
     {
-        if(ModelState.IsValid)
+        if (ModelState.IsValid)
         {
-            
+
 
             chamado.Abertura = DateTime.Now;
             chamado.Status = "Novo";
-            if(chamado.Servico != null)
+            if (chamado.Servico != null)
             {
                 var servico = _contexto.Servico.FirstOrDefault(s => s.Descricao == chamado.Servico.Descricao);
 
-                if(servico != null)
+                if (servico != null)
                 {
-                    if(servico.IdServico != null) // Check if IdServico is not null
-                    {
-                        chamado.Servico = servico;
-                    }
-                    else
+                    chamado.Servico = servico;
+                    chamado.DescricaoServico = servico.Descricao;
+
+                    if (servico.IdServico == null) // Check if IdServico is null
                     {
                         ModelState.AddModelError("", "Service Id is null.");
                         return View("~/Views/Home/Error.cshtml");
@@ -111,25 +110,25 @@ public class ChamadoController : Controller
             var usuario = _contexto.Usuario.FirstOrDefault(u => u.Username == username);
 
             if (usuario != null)
-        {
-           
+            {
+
                 await _emailService.SendEmailAsync(usuario.Email, "iticket.lab@gmail.com", chamado.Titulo, chamado.Descricao);
-           
-        }
-        else
-        {
-            ModelState.AddModelError("", "The user does not exist.");
-            return View("~/Views/Home/Error.cshtml");
-        }
 
-        TempData["Message"] = "Chamado Aberto com Sucesso!";
+            }
+            else
+            {
+                ModelState.AddModelError("", "The user does not exist.");
+                return View("~/Views/Home/Error.cshtml");
+            }
 
-        var viewModel = new ChamadoUsuarioViewModel
-        {
-            Chamado = chamado,
-            Usuario = usuario,
-            Servico = _contexto.Servico.Select(s => s.Descricao).ToList() // Fetch all Servico descriptions from your database
-        };
+            TempData["Message"] = "Chamado Aberto com Sucesso!";
+
+            var viewModel = new ChamadoUsuarioViewModel
+            {
+                Chamado = chamado,
+                Usuario = usuario,
+                Servico = _contexto.Servico.Select(s => s.Descricao).ToList() // Fetch all Servico descriptions from your database
+            };
 
             return View("~/Views/Home/AbrirChamado.cshtml", viewModel);
         }
