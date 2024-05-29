@@ -129,6 +129,14 @@ public IActionResult Index(int page = 1, string sort = null, string filtro = nul
         {
             return View();
         }
+
+        public IActionResult MeusChamados()
+        {
+            var username = HttpContext.Session.GetString("Username");
+            var userNome = _contexto.Usuario.FirstOrDefault(u => u.Username == username)?.Nome;
+            var chamado = _contexto.MeuChamadoPreview.Where(p => p.Solicitante == userNome).ToList();
+            return View(chamado);
+        }
         
         public IActionResult Login() {
 

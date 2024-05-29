@@ -1,0 +1,35 @@
+@model List<ITicket.Models.MeuChamadoPreview>
+
+@{
+    ViewData["Title"] = "Meus Chamados";
+}
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Numero do chamado</th>
+            <th>Solicitante</th>
+            <th>Titulo</th>
+            <th>Descricao</th>
+            <th>Abertura</th>
+            <th>SLA</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+
+<tbody>
+    @foreach (var chamado in Model)
+    {
+        <tr>
+            <td>@chamado.IdChamado</td>
+            <td>@chamado.Solicitante</td>
+            <td>@chamado.Titulo</td>
+            <td>@chamado.Descricao</td>
+            <td>@chamado.Abertura</td>
+            <td>@chamado.HoraLimite</td>
+            <td>@chamado.Status</td>
+        </tr>
+    }
+</tbody>
