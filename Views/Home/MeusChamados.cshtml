@@ -23,7 +23,9 @@
     @foreach (var chamado in Model)
     {
         <tr>
-            <td>@chamado.IdChamado</td>
+            <td>
+                <a href="#" data-toggle="modal" data-target= "#chamadoModal">@chamado.IdChamado</a>
+            </td>
             <td>@chamado.Solicitante</td>
             <td>@chamado.Titulo</td>
             <td>@chamado.Descricao</td>
@@ -33,3 +35,108 @@
         </tr>
     }
 </tbody>
+
+<!-- Modal que abre ao ser clicado no numero do chamado-->
+
+<div class="modal fade" id="chamadoModal" tabindex="-1" role="dialog" aria-labelledby="chamadoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="chamadoModalLabel">Chamado Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="IdChamado">Numero do chamado</label>
+                        <input type="text" class="form-control" id="IdChamado" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Titulo">Titulo</label>
+                        <input type="text" class="form-control" id="Titulo" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Descricao">Descricao</label>
+                        <input type="text" class="form-control" id="Descricao" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Status">Status</label>
+                        <input type="text" class="form-control" id="Status" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Prioridade">Prioridade</label>
+                        <input type="text" class="form-control" id="Prioridade" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Abertura">Abertura</label>
+                        <input type="text" class="form-control" id="Abertura" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Fechamento">Fechamento</label>
+                        <input type="text" class="form-control" id="Fechamento" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="HoraLimite">SLA</label>
+                        <input type="text" class="form-control" id="HoraLimite" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Observacao">Obs</label>
+                        <input type="text" class="form-control" id="Observacao" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Solucao">Solucao</label>
+                        <input type="text" class="form-control" id="Solucao" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Anexo">Anexo</label>
+                        <input type="text" class="form-control" id="Anexo" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Atendente">Atendente</label>
+                        <input type="text" class="form-control" id="Atendente" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="DescricaoServico">Tipo de Serviço</label>
+                        <input type="text" class="form-control" id="DescricaoServico" readonly>
+                    </div>                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("a[data-toggle='modal']").click(function(){
+        var idChamado = $(this).text();
+
+        $.ajax({
+            url: '/Home/Details',  
+            type: 'GET',
+            data: { id: idChamado },
+            success: function(data){
+                $('#IdChamado').val(data.idChamado);
+                $('#Titulo').val(data.titulo);
+                $('#Descricao').val(data.descricao);
+                $('#Status').val(data.status);
+                $('#Prioridade').val(data.prioridade);
+                $('#Abertura').val(data.abertura);
+                $('#Fechamento').val(data.fechamento ? data.fechamento : '');
+                $('#HoraLimite').val(data.horaLimite ? data.horaLimite : '');
+                $('#Observacao').val(data.observacao ? data.observacao : '');
+                $('#Solucao').val(data.solucao ? data.solucao : '');
+                $('#Anexo').val(data.anexo ? data.anexo : '');
+                $('#Atendente').val(data.atendente ? data.atendente : '');
+                $('#DescricaoServico').val(data.descricaoServico ? data.descricaoServico : '');
+                
+            }
+        });
+    });
+});
+</script>
