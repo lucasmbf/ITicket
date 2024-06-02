@@ -17,8 +17,6 @@ public class ChamadoController : Controller
         _emailService = emailService;
     }
 
-
-
     [HttpGet]
     public IActionResult GetPriorityForDescription(string descricao)
     {
@@ -32,13 +30,13 @@ public class ChamadoController : Controller
             return NotFound();
         }
     }
+
     public IActionResult AbrirChamado()
     {
         var loggedInUsername = HttpContext.Session.GetString("Username");
         var user = _contexto.Usuario.FirstOrDefault(u => u.Username == loggedInUsername);
         var servicos = _contexto.Servico.Select(s => s.Descricao).ToList();
         var email = user.Email;
-
 
         var viewModel = new ChamadoUsuarioViewModel
         {
@@ -49,7 +47,7 @@ public class ChamadoController : Controller
                 Cargo = user.Cargo,
                 Email = user.Email,
             },
-            Servico = servicos // Add the Descricao values to the view model
+            Servico = servicos // adiciona os valores de Descricao ao view
         };
 
         return View("~/Views/Home/AbrirChamado.cshtml", viewModel);
@@ -60,8 +58,6 @@ public class ChamadoController : Controller
     {
         if (ModelState.IsValid)
         {
-
-
             chamado.Abertura = DateTime.Now;
             chamado.Status = "Novo";
             if (chamado.Servico != null)
@@ -73,7 +69,7 @@ public class ChamadoController : Controller
                     chamado.Servico = servico;
                     chamado.DescricaoServico = servico.Descricao;
 
-                    if (servico.IdServico == null) // Check if IdServico is null
+                    if (servico.IdServico == null) // verifica se servico é null
                     {
                         ModelState.AddModelError("", "Service Id is null.");
                         return View("~/Views/Home/Error.cshtml");
@@ -88,6 +84,24 @@ public class ChamadoController : Controller
                     else
                     {
                         chamado.Prioridade = servico.Prioridade;
+                    }
+
+                    // SLA calculation
+                    switch (chamado.Prioridade)
+                    {
+                        case "Alta":
+                            chamado.HoraLimite = chamado.Abertura.GetValueOrDefault().AddHours(isMassivo ? 1 : 1);
+                            break;
+                        case "Media":
+                            chamado.HoraLimite = chamado.Abertura.GetValueOrDefault().AddHours(isMassivo ? 2 : 24);
+                            break;
+                        case "Baixa":
+                        default:
+                            if (!isMassivo)
+                            {
+                                chamado.HoraLimite = chamado.Abertura.GetValueOrDefault().AddDays(5);
+                            }
+                            break;
                     }
                 }
                 else
@@ -111,9 +125,7 @@ public class ChamadoController : Controller
 
             if (usuario != null)
             {
-
                 await _emailService.SendEmailAsync(usuario.Email, "iticket.lab@gmail.com", chamado.Titulo, chamado.Descricao);
-
             }
             else
             {
@@ -127,7 +139,7 @@ public class ChamadoController : Controller
             {
                 Chamado = chamado,
                 Usuario = usuario,
-                Servico = _contexto.Servico.Select(s => s.Descricao).ToList() // Fetch all Servico descriptions from your database
+                Servico = _contexto.Servico.Select(s => s.Descricao).ToList() // busca todas as descricoes de serviço do banco
             };
 
             return View("~/Views/Home/AbrirChamado.cshtml", viewModel);
@@ -143,7 +155,7 @@ public class ChamadoController : Controller
             {
                 Chamado = chamado,
                 Usuario = usuario,
-                Servico = _contexto.Servico.Select(s => s.Descricao).ToList() // Fetch all Servico descriptions from your database
+                Servico = _contexto.Servico.Select(s => s.Descricao).ToList() // busca todas as descricoes de serviço do banco
             };
 
             return View("~/Views/Home/AbrirChamado.cshtml", viewModel);
