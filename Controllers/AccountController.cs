@@ -4,26 +4,28 @@ using Microsoft.Extensions.Logging;
 using ITicket.Models;
 using System.Linq;
 
-namespace ITicket.Controllers {
-    public class AccountController : Controller {
+namespace ITicket.Controllers
+{
+    public class AccountController : Controller
+    {
         private readonly ContextoDb _contexto;
         private readonly ILogger<AccountController> _logger; //Adicionado para logar as ações do usuário
         private readonly SignInManager<IdentityUser> _signInManager;
 
-        public AccountController(ContextoDb contexto, ILogger<AccountController> logger, SignInManager<IdentityUser> signInManager) {
+        public AccountController(ContextoDb contexto, ILogger<AccountController> logger, SignInManager<IdentityUser> signInManager)
+        {
             _contexto = contexto;
             _logger = logger;
             _signInManager = signInManager;
         }
 
-        /*[HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }*/
 
+
+        //metodo de login
+        //Login Method
         [HttpPost]
-        public IActionResult ValidateLogin(string Username, string Senha) {
+        public IActionResult ValidateLogin(string Username, string Senha)
+        {
             var usuario = _contexto.Usuario.FirstOrDefault(u => u.Username == Username && u.Senha == Senha);
 
             if (usuario != null)
@@ -32,21 +34,29 @@ namespace ITicket.Controllers {
                 HttpContext.Session.SetString("Username", usuario.Username);
                 _logger.LogInformation("Session started for user {Username}", usuario.Username);
                 return RedirectToAction("Index", "Home");
-            } else{
+            }
+            else
+            {
                 ModelState.AddModelError(string.Empty, "Usuário ou senha incorreta, tente novamente.");
                 return View("Login");
             }
         }
 
+        //recupera o nome do usuário logado
+        //retrieves property Nome(Name) of currently logged in user
         [HttpGet]
-        public IActionResult GetUserName() {
+        public IActionResult GetUserName()
+        {
             var username = HttpContext.Session.GetString("Username");
-            Console.WriteLine("Username: " + username); // Log the username
-            if(username != null) {
+            Console.WriteLine("Username: " + username); // registra username
+            if (username != null)
+            {
                 var user = _contexto.Usuario.FirstOrDefault(u => u.Username == username);
-                Console.WriteLine("User: " + user); // Log the user
-                if(user != null) {
-                    var userInfo = new {
+                Console.WriteLine("User: " + user); // registra o objeto usuario
+                if (user != null)
+                {
+                    var userInfo = new
+                    {
                         Nome = user.Nome,
                         Departamento = user.Departamento,
                         Cargo = user.Cargo
@@ -64,43 +74,26 @@ namespace ITicket.Controllers {
             return Json(_signInManager.IsSignedIn(User));
         }
 
-        //Metodo para testar a conexao com o banco de dados pela url https://localhost:7243/account/testeconexao 
-        public IActionResult TesteConexao() 
-        {
-            try 
-            {
-                var usuario = _contexto.Usuario.FirstOrDefault(u => u.IdUsuario == 1);
-
-                if (usuario != null) 
-                {
-                    return Content($"ID: {usuario.IdUsuario}, Nome: {usuario.Nome}, Email: {usuario.Email}, Cargo: {usuario.Cargo}, Username: {usuario.Username}, Senha: {usuario.Senha}");
-                }
-
-                return Content("Usuário não encontrado.");
-            } 
-            catch (Exception ex) 
-            {
-                return BadRequest($"An error occurred: {ex.Message}");
-            }
-        }
+        //Metodo para testar a conexao com o banco de dados pela url https://localhost:7243/account/testeconexao  - deve ser removido em prod 
+        //tests the database connection - must be removed in production        
 
         public IActionResult TestConnection()
-{
-    try
-    {
-        if (_contexto.Database.CanConnect())
         {
-            return Ok("Connection to database successful");
+            try
+            {
+                if (_contexto.Database.CanConnect())
+                {
+                    return Ok("Connection to database successful");
+                }
+                else
+                {
+                    return BadRequest("Connection to database failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Connection to database failed: {ex.Message}");
+            }
         }
-        else
-        {
-            return BadRequest("Connection to database failed");
-        }
-    }
-    catch (Exception ex)
-    {
-        return BadRequest($"Connection to database failed: {ex.Message}");
-    }
-}
     }
 }

@@ -11,6 +11,9 @@ public class AdministracaoController : Controller
         _contexto = context;
     }
 
+
+    //metodo para cadastrar usuario
+    //method to register new user
     [HttpPost]
     public IActionResult Create(Usuario usuario)
     {

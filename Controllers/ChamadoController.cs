@@ -17,6 +17,8 @@ public class ChamadoController : Controller
         _emailService = emailService;
     }
 
+
+    //metodo para buscar prioridade por descrição / method to search priority by description
     [HttpGet]
     public IActionResult GetPriorityForDescription(string descricao)
     {
@@ -31,6 +33,8 @@ public class ChamadoController : Controller
         }
     }
 
+     //metodo popular campos Nome, Departamento, Cargo e Email / method to populate fields Name, Department, Position and Email 
+    [HttpGet]
     public IActionResult AbrirChamado()
     {
         var loggedInUsername = HttpContext.Session.GetString("Username");
@@ -47,12 +51,13 @@ public class ChamadoController : Controller
                 Cargo = user.Cargo,
                 Email = user.Email,
             },
-            Servico = servicos // adiciona os valores de Descricao ao view
+            Servico = servicos // adiciona os valores de Descricao ao view / adds the values of Descricao to the view
         };
 
         return View("~/Views/Home/AbrirChamado.cshtml", viewModel);
     }
 
+    //metodo para abrir chamado / method to open a ticket
     [HttpPost]
     public async Task<IActionResult> AbrirChamado(Chamado chamado)
     {
@@ -69,7 +74,7 @@ public class ChamadoController : Controller
                     chamado.Servico = servico;
                     chamado.DescricaoServico = servico.Descricao;
 
-                    if (servico.IdServico == null) // verifica se servico é null
+                    if (servico.IdServico == null) // verifica se servico é null / checks if servico is null
                     {
                         ModelState.AddModelError("", "Service Id is null.");
                         return View("~/Views/Home/Error.cshtml");
@@ -86,7 +91,7 @@ public class ChamadoController : Controller
                         chamado.Prioridade = servico.Prioridade;
                     }
 
-                    // SLA calculation
+                    // calculo SLA / SLA calculation
                     switch (chamado.Prioridade)
                     {
                         case "Alta":

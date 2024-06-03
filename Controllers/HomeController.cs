@@ -36,6 +36,7 @@ namespace ITicket.Controllers
             return View(usuario);
         }
 
+        //exibe os chamados abertos de todos os usuarios e controla o filtro de buscas / displays all open tickets from all users and controls search filters
         public IActionResult Index(int page = 1, string sort = null, string filtro = null, string valor = null)
         {
             var username = HttpContext.Session.GetString("Username");
@@ -62,10 +63,10 @@ namespace ITicket.Controllers
                         {
                             chamados = chamados.Where(c => c.IdChamado == idChamado);
                         }
-                        // Handle invalid input
+                        
                         else
                         {
-                            // Log error, show error message, etc.
+                            return BadRequest("Numero de chamado invalido");
                         }
                         break;
                     case "Abertura":
@@ -73,10 +74,10 @@ namespace ITicket.Controllers
                         {
                             chamados = chamados.Where(c => c.Abertura.HasValue && c.Abertura.Value.Date == abertura.Date);
                         }
-                        // Handle invalid input
+                        
                         else
                         {
-                            // Log error, show error message, etc.
+                            return BadRequest("Data de abertura invalida");
                         }
                         break;
                     case "Solicitante":
@@ -90,16 +91,16 @@ namespace ITicket.Controllers
                         {
                             chamados = chamados.Where(c => c.HoraLimite.HasValue && c.HoraLimite.Value.Date == horaLimite.Date);
                         }
-                        // Handle invalid input
+                        
                         else
                         {
-                            // Log error, show error message, etc.
+                            return BadRequest("formato de SLA invalido");
                         }
                         break;
                 }
             }
 
-            // Sort every time the column title is clicked
+            // realiza o sort toda vez que a coluna e clicada / sorts every time a column is clicked
             if (!string.IsNullOrEmpty(sort))
             {
                 switch (sort)
@@ -125,12 +126,13 @@ namespace ITicket.Controllers
             return View(chamados.ToList());
         }
 
-
+        //devolve a tela Adm / returns Adm screen
         public IActionResult Administracao()
         {
             return View();
         }
 
+        //devolve a tela MeusChamados / returns MeusChamados screen
         public IActionResult MeusChamados()
         {
             var username = HttpContext.Session.GetString("Username");
@@ -140,6 +142,7 @@ namespace ITicket.Controllers
 
         }
 
+        //exibe detalhes do chamado quando clicado / displays ticket details when clicked
         [HttpGet]
         public IActionResult Details(int id)
         {
@@ -152,6 +155,7 @@ namespace ITicket.Controllers
             return Json(chamado);
         }
 
+        //devolve a pagina de login / returns login page
         public IActionResult Login()
         {
 
